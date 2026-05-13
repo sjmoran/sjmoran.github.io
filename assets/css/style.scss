@@ -212,6 +212,20 @@ h3 { font-size: 1.2rem; margin: 1.5rem 0 .75rem; }
   white-space: nowrap; min-width: 5.5rem;
 }
 
+/* ----- Selected impact ----- */
+.impact-body { max-width: 70ch; margin: 1rem 0 0; }
+.impact-body p { font-size: 1.02rem; line-height: 1.65; color: var(--fg); margin: 0 0 1rem; }
+.impact-list { list-style: none; padding: 0; margin: 1rem 0 0; }
+.impact-list li {
+  padding: .55rem 0 .55rem 1.25rem; position: relative; line-height: 1.55;
+  border-bottom: 1px solid var(--border); font-size: .97rem; color: var(--fg);
+}
+.impact-list li:last-child { border-bottom: 0; }
+.impact-list li::before {
+  content: ""; position: absolute; left: 0; top: 1.05rem;
+  width: .35rem; height: .35rem; border-radius: 50%; background: var(--accent);
+}
+
 /* ----- Selected work cards ----- */
 .cards-grid {
   display: grid;

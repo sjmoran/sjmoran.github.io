@@ -4,6 +4,7 @@ title: Sean Moran
 ---
 
 {% include hero.html %}
+{% include impact.html %}
 {% include now.html %}
 {% include selected-work.html %}
 {% include patents.html %}
