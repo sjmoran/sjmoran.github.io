@@ -1,0 +1,39 @@
+title: Sean Moran
+tagline: AI Engineer · Researcher
+description: Sean Moran — AI Engineer building production GenAI for Fortune 100 financial systems. PhD EdinburghNLP. CVPR/ECCV/ICPR/SIGIR. 25+ granted patents.
+long_description: AI Engineer building production GenAI for Fortune 100 financial systems. PhD EdinburghNLP. CVPR/ECCV/ICPR/SIGIR. 25+ granted patents.
+url: https://sjmoran.github.io
+baseurl: ""
+author: Sean Moran
+location: London, UK
+
+# Analytics — Web-Stat only (existing account).
+webstat_id: 2185290
+
+# Social / external
+github_username: sjmoran
+scholar_url: https://scholar.google.com/citations?user=nbw0rIUAAAAJ&hl=en
+linkedin_url: https://www.linkedin.com/in/seanjmoran/
+medium_url: https://medium.com/@sean.j.moran
+huggingface_url: https://huggingface.co/sjmoran
+# Email split into local-part and host so the full address never appears
+# verbatim in source. Reconstructed by JS at runtime in _includes/email.html.
+email_user: sean.j.moran
+email_host: gmail.com
+
+show_downloads: false
+
+# Redacted CV — when present at the path below the hero button switches on.
+cv_pdf: /cv.pdf
+theme: jekyll-theme-minimal
+plugins:
+  - jekyll-sitemap
+
+# Don't process the README in jekyll output
+exclude:
+  - README.md
+  - Gemfile
+  - Gemfile.lock
+  - jekyll-theme-minimal.gemspec
+  - script
+  - bib.zip

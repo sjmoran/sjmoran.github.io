@@ -1,0 +1,43 @@
+<section class="hero">
+  <div>
+    <span class="eyebrow">London · AI Engineer · Researcher</span>
+    <h1>Hi, I'm Sean Moran.</h1>
+    <p class="hero-thesis">
+      I build <strong>production GenAI</strong> for some of the most regulated, highest-stakes
+      computing environments on earth — Fortune-100 banks. My research lives at the intersection of
+      <strong>retrieval, representation learning, and reliable agents</strong>: making large models
+      useful when correctness, latency, and audit-readiness are non-negotiable.
+    </p>
+    <p class="hero-thesis">
+      PhD at <strong>EdinburghNLP</strong>. CVPR / ECCV / ICPR / SIGIR. Granted US patents in
+      federated learning, retrieval, and source-code understanding.
+    </p>
+
+    <div class="metric-row">
+      <a class="metric" href="{{ site.scholar_url }}" target="_blank" rel="noopener">
+        <span class="num">40+</span><span class="lbl">Peer-reviewed papers · Scholar</span>
+      </a>
+      <a class="metric" href="https://patents.google.com/?inventor=Sean+Moran" target="_blank" rel="noopener">
+        <span class="num">25+</span><span class="lbl">Granted US patents</span>
+      </a>
+      <a class="metric" href="https://github.com/{{ site.github_username }}" target="_blank" rel="noopener">
+        <span class="num">10+</span><span class="lbl">Open-source projects</span>
+      </a>
+    </div>
+
+    <div class="cta-row">
+      <a class="btn btn-primary" href="/research/">Research statement →</a>
+      <a class="btn btn-secondary" href="{{ site.scholar_url }}" target="_blank" rel="noopener">Google Scholar</a>
+      {% if site.cv_pdf %}<a class="btn btn-secondary" href="{{ site.cv_pdf }}" target="_blank" rel="noopener">CV (PDF)</a>{% endif %}
+      <a class="btn btn-secondary" href="#contact">Contact</a>
+    </div>
+    {% unless site.cv_pdf %}
+    <p style="font-size:.9rem; color: var(--fg-muted); margin: .75rem 0 0;">
+      CV available on request — email
+      <span style="font-family: var(--font-mono);">{% include email.html subject="CV request" %}</span>.
+    </p>
+    {% endunless %}
+  </div>
+
+  <img class="hero-portrait" src="/images/sean.png" alt="Portrait of Sean Moran">
+</section>
