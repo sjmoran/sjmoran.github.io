@@ -9,6 +9,9 @@
 
   <meta name="description" content="{{ site.description }}">
   <meta name="author" content="{{ site.author }}">
+  {% if site.google_site_verification and site.google_site_verification != "" %}
+  <meta name="google-site-verification" content="{{ site.google_site_verification }}">
+  {% endif %}
 
   <!-- OpenGraph / social -->
   <meta property="og:type" content="website">
@@ -184,6 +187,17 @@
   </footer>
 
   <script src="/assets/js/site.js" defer></script>
+
+  {% if site.ga4_id and site.ga4_id != "" %}
+  <!-- Google Analytics 4 -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id={{ site.ga4_id }}"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', '{{ site.ga4_id }}');
+  </script>
+  {% endif %}
 
   {% if site.webstat_id %}
   <!-- begin Web-Stat code v 7.0 -->
