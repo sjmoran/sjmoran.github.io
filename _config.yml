@@ -49,3 +49,8 @@ exclude:
   - jekyll-theme-minimal.gemspec
   - script
   - bib.zip
+  # Theme boilerplate — identical across all Minimal-theme sites, so Google
+  # flags it as "Duplicate without user-selected canonical". Keep it out.
+  - docs
+  # Unfinished drafts — never publish (they duplicate the Medium posts).
+  - drafts
