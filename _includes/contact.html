@@ -1,15 +1,6 @@
-<section id="contact">
-  <div class="contact-card">
-    <div>
-      <h3 style="margin-top:0">Get in touch</h3>
-      <p>Open to invited talks, panels, and industry discussions. Email is the best way to reach me.</p>
-      <p style="font-family: var(--font-mono); font-size: 1.05rem; margin: .25rem 0 1rem;">
-        {% include email.html subject="Hello Sean" %}
-      </p>
-      <div class="cta-row">
-        <a class="btn btn-secondary" href="{{ site.linkedin_url }}" target="_blank" rel="noopener">LinkedIn</a>
-        <a class="btn btn-secondary" href="https://github.com/{{ site.github_username }}" target="_blank" rel="noopener">GitHub</a>
-      </div>
-    </div>
-  </div>
+<section id="contact" class="contact-section">
+  <span class="eyebrow">Contact</span>
+  <h2>Have a hard AI systems problem?</h2>
+  <p>For research collaboration, technical advisory work, or invited talks, email is the best way to reach me.</p>
+  <p class="contact-email">{% include email.html subject="Hello Sean" %}</p>
 </section>

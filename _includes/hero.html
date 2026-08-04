@@ -1,39 +1,29 @@
-<section class="hero">
-  <div>
-    <span class="eyebrow">London · Applied AI · Research and Engineering</span>
-    <h1>Hi, I'm Sean Moran.</h1>
-    <p class="hero-thesis">
-      I build applied AI systems that move from research into production, usually in regulated and operationally complex settings. My work covers <strong>retrieval, representation learning, reliable agents, code intelligence, and production GenAI</strong>, making large models useful where correctness, latency, governance and auditability all matter.
+<section class="hero" aria-labelledby="hero-title">
+  <div class="hero-copy">
+    <span class="eyebrow">AI research and engineering · London</span>
+    <h1 id="hero-title">Sean Moran</h1>
+    <p class="hero-kicker">
+      I research and build AI systems for <strong>retrieval, code, and reliable decision-making</strong>.
     </p>
     <p class="hero-thesis">
-      Previously worked in an applied AI function inside JPMorgan's CTO organisation. More recent work has been with organisations moving from AI experimentation toward systems they can deploy and operate. PhD <strong>EdinburghNLP</strong>; patents in retrieval and code intelligence; papers at CVPR, ECCV and SIGIR.
+      My work moves between papers, prototypes, and production systems, with a focus on methods that remain useful under real constraints: limited data, latency, privacy, governance, and the need to explain what a model did.
     </p>
 
-    <div class="metric-row">
-      <a class="metric" href="{{ site.scholar_url }}" target="_blank" rel="noopener">
-        <span class="num">40+</span><span class="lbl">Peer-reviewed papers · Scholar</span>
-      </a>
-      <a class="metric" href="https://patents.google.com/?inventor=Sean+Moran" target="_blank" rel="noopener">
-        <span class="num">25+</span><span class="lbl">Granted US patents</span>
-      </a>
-      <a class="metric" href="https://github.com/{{ site.github_username }}" target="_blank" rel="noopener">
-        <span class="num">10+</span><span class="lbl">Open-source projects</span>
-      </a>
-    </div>
+    <p class="credential-line">
+      PhD, EdinburghNLP <span aria-hidden="true">·</span>
+      40+ papers <span aria-hidden="true">·</span>
+      25+ granted US patents <span aria-hidden="true">·</span>
+      previously JPMorgan CTO
+    </p>
 
     <div class="cta-row">
-      <a class="btn btn-primary" href="/research/">Research statement →</a>
-      <a class="btn btn-secondary" href="{{ site.scholar_url }}" target="_blank" rel="noopener">Google Scholar</a>
-      {% if site.cv_pdf %}<a class="btn btn-secondary" href="{{ site.cv_pdf }}" target="_blank" rel="noopener">CV (PDF)</a>{% endif %}
-      <a class="btn btn-secondary" href="#contact">Contact</a>
+      <a class="btn btn-primary" href="#work">Selected work</a>
+      <a class="text-link" href="/research/">Research overview <span aria-hidden="true">→</span></a>
+      <a class="text-link" href="{{ site.scholar_url }}" target="_blank" rel="noopener">Google Scholar <span aria-hidden="true">↗</span></a>
     </div>
-    {% unless site.cv_pdf %}
-    <p style="font-size:.9rem; color: var(--fg-muted); margin: .75rem 0 0;">
-      CV available on request. Email
-      <span style="font-family: var(--font-mono);">{% include email.html subject="CV request" %}</span>.
-    </p>
-    {% endunless %}
   </div>
 
-  <img class="hero-portrait" src="/images/sean.png" alt="Portrait of Sean Moran">
+  <figure class="hero-portrait-wrap">
+    <img class="hero-portrait" src="/images/sean.png" alt="Sean Moran" width="240" height="240">
+  </figure>
 </section>

@@ -1,131 +1,71 @@
-<section id="work">
-  <div class="section-head">
-    <h2>Selected work</h2>
-    <span class="meta">A short selection of papers and systems from across my work.</span>
+<section id="work" class="editorial-section">
+  <div class="section-intro split-intro">
+    <div>
+      <span class="eyebrow">Selected work</span>
+      <h2>Research made concrete.</h2>
+    </div>
+    <p>Papers, code, and working systems. Selected for the idea and what it enabled, not chronology.</p>
   </div>
 
-  <div class="cards-grid">
-
-    <article class="card">
-      <a class="card-thumb" href="https://sjmoran.github.io/bitbudget/" target="_blank" rel="noopener">
-        <img src="/img/bitbudget.png" alt="BitBudget Benchmark — retrieval quality per byte, with compression and indexing leaderboards">
+  <div class="work-list">
+    <article class="work-item">
+      <a class="work-visual" href="https://sjmoran.github.io/bitbudget/" target="_blank" rel="noopener" aria-label="Open the BitBudget Benchmark">
+        <img src="/img/bitbudget.png" alt="BitBudget retrieval compression leaderboard" loading="lazy" width="640" height="400">
       </a>
-      <div class="card-body">
-        <span class="card-venue">Open benchmark</span>
-        <h3>BitBudget Benchmark</h3>
-        <p class="card-desc">An open embedding-compression benchmark extending my PhD learning-to-hash line; shows single-bit codes with re-ranking stay lossless at 32× compression.</p>
-        <div class="card-links">
-          <a href="https://sjmoran.github.io/bitbudget/" target="_blank" rel="noopener">Benchmark</a>
-          <a href="https://github.com/sjmoran/bitbudget" target="_blank" rel="noopener">Code</a>
-        </div>
+      <div class="work-copy">
+        <p class="work-meta">Open benchmark · Retrieval</p>
+        <h3><a href="https://sjmoran.github.io/bitbudget/" target="_blank" rel="noopener">BitBudget Benchmark</a></h3>
+        <p>Measures retrieval quality per byte. Single-bit codes with re-ranking remain lossless at 32× compression, extending my earlier learning-to-hash research to modern embeddings.</p>
+        <p class="work-links"><a href="https://sjmoran.github.io/bitbudget/" target="_blank" rel="noopener">Benchmark ↗</a><a href="https://github.com/sjmoran/bitbudget" target="_blank" rel="noopener">Code ↗</a></p>
       </div>
     </article>
 
-    <article class="card">
-      <a class="card-thumb" href="https://huggingface.co/spaces/sjmoran/the-corpus-is-the-model" target="_blank" rel="noopener">
-        <img src="/img/corpus-is-the-model.jpg" alt="The Corpus is the Model — explainable image tagging demo showing predicted tags and the corpus exemplars that produced them">
+    <article class="work-item">
+      <a class="work-visual" href="https://huggingface.co/spaces/sjmoran/the-corpus-is-the-model" target="_blank" rel="noopener" aria-label="Open The Corpus is the Model demo">
+        <img src="/img/corpus-is-the-model.jpg" alt="Explainable image tagging with source exemplars" loading="lazy" width="640" height="400">
       </a>
-      <div class="card-body">
-        <span class="card-venue">Interactive demo · HF Spaces</span>
-        <h3>The Corpus is the Model</h3>
-        <p class="card-desc">Training-free, auditable image tagging from my PhD research: a relevance model recast as one cross-attention head over a labelled corpus, attributing every tag to the exemplars that produced it.</p>
-        <div class="card-links">
-          <a href="https://huggingface.co/spaces/sjmoran/the-corpus-is-the-model" target="_blank" rel="noopener">Demo</a>
-        </div>
+      <div class="work-copy">
+        <p class="work-meta">Interactive system · Explainability</p>
+        <h3><a href="https://huggingface.co/spaces/sjmoran/the-corpus-is-the-model" target="_blank" rel="noopener">The Corpus is the Model</a></h3>
+        <p>A training-free image tagger that treats a labelled corpus as one cross-attention head. Every prediction points back to the examples that produced it.</p>
+        <p class="work-links"><a href="https://huggingface.co/spaces/sjmoran/the-corpus-is-the-model" target="_blank" rel="noopener">Live demo ↗</a></p>
       </div>
     </article>
 
-    <article class="card">
-      <a class="card-thumb" href="https://arxiv.org/pdf/2003.13985.pdf" target="_blank" rel="noopener">
-        <img src="/img/deeplpf.PNG" alt="DeepLPF before/after image enhancement">
+    <article class="work-item">
+      <a class="work-visual" href="https://ieeexplore.ieee.org/abstract/document/11262341" target="_blank" rel="noopener" aria-label="Read the CodeQUEST paper">
+        <img src="/img/codequest.png" alt="CodeQUEST evaluator and optimiser loop" loading="lazy" width="640" height="400">
       </a>
-      <div class="card-body">
-        <span class="card-venue">CVPR 2020</span>
-        <h3>DeepLPF</h3>
-        <p class="card-desc">Deep local parametric filters that learn ellipse, gradient, and polynomial transforms for image enhancement. Interpretable and parameter-efficient; matched or beat the published results on MIT-Adobe FiveK at the time.</p>
-        <div class="card-links">
-          <a href="https://arxiv.org/pdf/2003.13985.pdf" target="_blank" rel="noopener">Paper</a>
-          <a href="https://github.com/sjmoran/deep_local_parametric_filters" target="_blank" rel="noopener">Code</a>
-          <a href="https://www.youtube.com/watch?v=Sxach3FM6FY" target="_blank" rel="noopener">Video</a>
-        </div>
+      <div class="work-copy">
+        <p class="work-meta">ISSREW 2025 · AI for software</p>
+        <h3><a href="https://ieeexplore.ieee.org/abstract/document/11262341" target="_blank" rel="noopener">CodeQUEST</a></h3>
+        <p>An evaluator–optimiser loop for code quality across ten dimensions, checked against static-analysis proxies and used in an internal developer workflow.</p>
+        <p class="work-links"><a href="https://ieeexplore.ieee.org/abstract/document/11262341" target="_blank" rel="noopener">Paper ↗</a><a href="https://github.com/jpmorganchase/codequest" target="_blank" rel="noopener">Code ↗</a></p>
       </div>
     </article>
 
-    <article class="card">
-      <a class="card-thumb" href="https://arxiv.org/abs/1911.13175" target="_blank" rel="noopener">
-        <img src="/img/curl.PNG" alt="CURL neural curve layers result">
+    <article class="work-item">
+      <a class="work-visual" href="https://arxiv.org/abs/2003.13985" target="_blank" rel="noopener" aria-label="Read the DeepLPF paper">
+        <img src="/img/deeplpf.PNG" alt="DeepLPF local image enhancement results" loading="lazy" width="640" height="400">
       </a>
-      <div class="card-body">
-        <span class="card-venue">ICPR 2020</span>
-        <h3>CURL — Neural Curve Layers</h3>
-        <p class="card-desc">A small, differentiable colour-curve module that turns global tone-mapping into a learnable layer, competitive with much larger image-enhancement networks across three benchmarks.</p>
-        <div class="card-links">
-          <a href="https://arxiv.org/abs/1911.13175" target="_blank" rel="noopener">Paper</a>
-          <a href="https://github.com/sjmoran/neural_curve_layers" target="_blank" rel="noopener">Code</a>
-          <a href="https://youtu.be/66FnRfDR_Oo" target="_blank" rel="noopener">Talk</a>
-        </div>
+      <div class="work-copy">
+        <p class="work-meta">CVPR 2020 · Efficient vision</p>
+        <h3><a href="https://arxiv.org/abs/2003.13985" target="_blank" rel="noopener">DeepLPF</a></h3>
+        <p>Learnable local parametric filters for image enhancement: interpretable ellipse, gradient, and polynomial transforms instead of a large opaque decoder.</p>
+        <p class="work-links"><a href="https://arxiv.org/abs/2003.13985" target="_blank" rel="noopener">Paper ↗</a><a href="https://github.com/sjmoran/deep_local_parametric_filters" target="_blank" rel="noopener">Code ↗</a></p>
       </div>
     </article>
 
-    <article class="card">
-      <a class="card-thumb" href="https://arxiv.org/pdf/2007.09187.pdf" target="_blank" rel="noopener">
-        <img src="/img/sidgan.png" alt="Low-light video enhancement with SIDGAN">
+    <article class="work-item">
+      <a class="work-visual" href="https://arxiv.org/abs/2304.01238" target="_blank" rel="noopener" aria-label="Read the SpamT5 paper">
+        <img src="/img/spamt5.png" alt="SpamT5 few-shot email classification results" loading="lazy" width="640" height="400">
       </a>
-      <div class="card-body">
-        <span class="card-venue">ECCV 2020</span>
-        <h3>SIDGAN — Low-Light Video</h3>
-        <p class="card-desc">A two-stage CycleGAN that synthesises low-light raw video for training enhancement networks in a setting where labelled data is unavailable.</p>
-        <div class="card-links">
-          <a href="https://arxiv.org/pdf/2007.09187.pdf" target="_blank" rel="noopener">Paper</a>
-          <a href="https://github.com/sjmoran/SIDGAN" target="_blank" rel="noopener">Code</a>
-          <a href="https://youtu.be/-MwiYBXdtD4" target="_blank" rel="noopener">Demo</a>
-        </div>
+      <div class="work-copy">
+        <p class="work-meta">FinLLM at IJCAI 2023 · Language models</p>
+        <h3><a href="https://arxiv.org/abs/2304.01238" target="_blank" rel="noopener">SpamT5</a></h3>
+        <p>A few-shot email-spam benchmark across several language-model families, with openly released Flan-T5 weights and training code.</p>
+        <p class="work-links"><a href="https://arxiv.org/abs/2304.01238" target="_blank" rel="noopener">Paper ↗</a><a href="https://github.com/jpmorganchase/llm-email-spam-detection" target="_blank" rel="noopener">Code ↗</a></p>
       </div>
     </article>
-
-    <article class="card">
-      <a class="card-thumb" href="https://arxiv.org/abs/2304.01238" target="_blank" rel="noopener">
-        <img src="/img/spamt5.png" alt="Spam-T5 F1 score vs number of training samples">
-      </a>
-      <div class="card-body">
-        <span class="card-venue">FinLLM @ IJCAI 2023</span>
-        <h3>SpamT5</h3>
-        <p class="card-desc">Benchmarks several LLM families for few-shot email spam detection and introduces a fine-tuned Flan-T5 baseline. Released openly through JPMorgan with model weights and training code.</p>
-        <div class="card-links">
-          <a href="https://arxiv.org/abs/2304.01238" target="_blank" rel="noopener">Paper</a>
-          <a href="https://github.com/jpmorganchase/llm-email-spam-detection" target="_blank" rel="noopener">Code</a>
-        </div>
-      </div>
-    </article>
-
-    <article class="card">
-      <a class="card-thumb" href="https://ieeexplore.ieee.org/abstract/document/11262341" target="_blank" rel="noopener">
-        <img src="/img/codequest.png" alt="CodeQUEST framework schematic — Evaluator and Optimizer loop">
-      </a>
-      <div class="card-body">
-        <span class="card-venue">ISSREW 2025</span>
-        <h3>CodeQUEST</h3>
-        <p class="card-desc">An Evaluator/Optimizer framework that uses LLMs to score code along ten quality dimensions and iteratively improve it. Validated against established static-analysis proxies and used in an internal developer workflow.</p>
-        <div class="card-links">
-          <a href="https://ieeexplore.ieee.org/abstract/document/11262341" target="_blank" rel="noopener">Paper</a>
-          <a href="https://github.com/jpmorganchase/codequest" target="_blank" rel="noopener">Code</a>
-        </div>
-      </div>
-    </article>
-
-    <article class="card">
-      <a class="card-thumb" href="https://patents.google.com/?inventor=Sean+Moran&assignee=JPMorgan+Chase" target="_blank" rel="noopener">
-        <img src="/images/patents-illustration.png" alt="Illustration of a United States patent document">
-      </a>
-      <div class="card-body">
-        <span class="card-venue">USPTO · 2023 – 2026</span>
-        <h3>Patent portfolio</h3>
-        <p class="card-desc">25+ granted US patents across federated learning, source-code understanding, hashing, code duplication, anomaly detection, biometric anonymisation, and image processing. 50+ applications filed.</p>
-        <div class="card-links">
-          <a href="#patents">See all →</a>
-        </div>
-      </div>
-    </article>
-
   </div>
 </section>

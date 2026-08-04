@@ -4,68 +4,72 @@ title: Research
 permalink: /research/
 ---
 
-<section style="max-width: var(--content-w); margin: 3rem auto;">
+<article class="research-page">
+  <header class="page-intro research-intro">
+    <span class="eyebrow">Research</span>
+    <h1>AI systems that retrieve, decide, and explain.</h1>
+    <p>I work on methods that have to survive contact with real systems: large collections, scarce labels, changing data, sensitive information, and decisions that need to be inspected after the fact.</p>
+  </header>
 
-<span class="eyebrow">Research</span>
-<h1>What I work on, and why.</h1>
+  <section class="research-theme" aria-labelledby="retrieval-heading">
+    <p class="theme-index">01 · Retrieval and representation</p>
+    <div class="theme-body">
+      <h2 id="retrieval-heading">Find the right information with less machinery.</h2>
+      <p>My PhD work at EdinburghNLP studied compact representations for large-scale retrieval. The core idea was simple: learn a small number of useful bits, preserve neighbourhoods, and avoid expensive lookup without giving up much accuracy.</p>
+      <p>That line now extends to embedding compression, event detection in noisy streams, code-to-code retrieval, and the cases where vector similarity is the wrong tool for a RAG query.</p>
+      <ul class="evidence-list">
+        <li><span>2025</span><a href="http://arxiv.org/abs/2510.04127" target="_blank" rel="noopener">Projection and Quantisation: from random projections to the RAG era</a></li>
+        <li><span>2019</span><a href="https://www.nowpublishers.com/article/Details/INR-066" target="_blank" rel="noopener">Learning to Hash for Large-Scale Information Retrieval</a></li>
+        <li><span>ACL 2014</span><a href="/pdfs/acl14a.pdf">Real-time detection and tracking of events in social media</a></li>
+        <li><span>SIGIR 2013</span><a href="/pdfs/npq_sigir.pdf">Neighbourhood-Preserving Quantisation</a></li>
+      </ul>
+    </div>
+  </section>
 
-<p class="hero-thesis" style="font-size:1.15rem;">
-Four themes run through my published work and the systems I have built. They are the questions I have kept returning to, and the ones that have tended to matter most once a system has to operate in production.
-</p>
+  <section class="research-theme" aria-labelledby="reliability-heading">
+    <p class="theme-index">02 · Reliable AI for software and operations</p>
+    <div class="theme-body">
+      <h2 id="reliability-heading">Treat deployment constraints as part of the research problem.</h2>
+      <p>In regulated environments, a benchmark score is only the beginning. Latency, audit trails, privacy, model risk, and recovery from failure often determine whether a method is useful at all.</p>
+      <p>This work covers code-quality evaluation, API retrieval, anomaly detection, language models trained with few examples, federated learning, and machine unlearning.</p>
+      <ul class="evidence-list">
+        <li><span>ISSREW 2025</span><a href="https://ieeexplore.ieee.org/abstract/document/11262341" target="_blank" rel="noopener">CodeQUEST: evaluation and improvement of code quality using LLMs</a></li>
+        <li><span>TMLR 2024</span><a href="https://arxiv.org/abs/2305.15016" target="_blank" rel="noopener">Estimating dataset separability for LLM fine-tuning</a></li>
+        <li><span>FinLLM 2023</span><a href="https://arxiv.org/abs/2304.01238" target="_blank" rel="noopener">SpamT5: few-shot email-spam detection</a></li>
+        <li><span>DMKD 2024</span><a href="https://rdcu.be/dZ9Wv" target="_blank" rel="noopener">Probabilistic API contract specification retrieval</a></li>
+      </ul>
+    </div>
+  </section>
 
-<h2>Scalable retrieval and representation systems</h2>
+  <section class="research-theme" aria-labelledby="structure-heading">
+    <p class="theme-index">03 · Efficient and auditable learning</p>
+    <div class="theme-body">
+      <h2 id="structure-heading">Use the right inductive bias before adding scale.</h2>
+      <p>Some problems reward a carefully chosen operator more than a larger network. DeepLPF learns local parametric filters; CURL makes colour curves differentiable; SIDGAN creates training data when paired low-light video is unavailable.</p>
+      <p>The same preference appears in privacy-preserving and federated systems: keep the mechanism small enough to inspect, test, and operate under distribution shift.</p>
+      <ul class="evidence-list">
+        <li><span>CVPR 2020</span><a href="https://arxiv.org/abs/2003.13985" target="_blank" rel="noopener">DeepLPF: Deep Local Parametric Filters for Image Enhancement</a></li>
+        <li><span>ICPR 2020</span><a href="https://arxiv.org/abs/1911.13175" target="_blank" rel="noopener">CURL: Neural Curve Layers for Global Image Enhancement</a></li>
+        <li><span>ECCV 2020</span><a href="https://arxiv.org/abs/2007.09187" target="_blank" rel="noopener">SIDGAN: low-light video enhancement with synthetic data</a></li>
+        <li><span>WACV 2024</span><a href="https://arxiv.org/abs/2204.12495" target="_blank" rel="noopener">Privacy against inversion attacks in federated learning</a></li>
+      </ul>
+    </div>
+  </section>
 
-<p>
-How to build representations that let you find the right thing in a large collection, quickly and reliably. This was the topic of my PhD at <strong>EdinburghNLP</strong>, and it has remained relevant as systems have grown larger.
-</p>
+  <section class="research-constraints" aria-labelledby="constraints-heading">
+    <span class="eyebrow">Method</span>
+    <h2 id="constraints-heading">Three constraints on the work.</h2>
+    <ul>
+      <li><strong>Evaluation that resembles deployment.</strong> Test the failure modes, costs, and data conditions the system will actually face.</li>
+      <li><strong>Inspection over mystery.</strong> Prefer mechanisms whose behaviour can be traced, challenged, and corrected.</li>
+      <li><strong>Useful simplicity.</strong> Add parameters only when structure and better problem formulation stop paying.</li>
+    </ul>
+  </section>
 
-<p>
-The hashing line (<em>Variable Bit Quantisation</em>, ACL 2013; <em>Neighbourhood-Preserving Quantisation</em>, SIGIR 2013; and a 2019 monograph) replaced heavy lookups with a few learned bits at comparable accuracy. In parallel, <em>Real-time Detection, Tracking, and Monitoring of Automatically Discovered Events in Social Media</em> (ACL 2014) and <em>Enhancing First Story Detection using Word Embeddings</em> (SIGIR 2016) applied related ideas to noisy text streams. <em>Sparse Kernel Learning for Image Annotation</em> (ICMR 2014, Best Student Paper) extended the work into multi-modal retrieval.
-</p>
-
-<p>
-In production, the line has continued in code-to-code retrieval (<em>Senatus</em>, <em>De-Skew LSH</em>), source-code understanding via spatial representations, and federated secure vocabulary learning: variations on the same question at larger scale and under tighter constraints. Recent essays on the bits-over-random metric and on the limits of vector search for some RAG queries extend the same thinking into the LLM setting.
-</p>
-
-<h2>Operational GenAI in regulated environments</h2>
-
-<p>
-Much generative-AI research is evaluated on held-out benchmarks. A separate set of problems, the ones I spend most of my time on, concern the behaviour of those same models in regulated, audit-heavy, operationally complex settings: latency budgets, governance, hallucination control, model risk management, and the failure modes that surface only in production.
-</p>
-
-<p>
-Published work in this area includes <em>SpamT5</em> (FinLLM @ IJCAI 2023) on few-shot LLM email-spam detection, <em>CodeQUEST</em> (ISSREW 2025) on iterative LLM-based code-quality evaluation, and a number of systems (<em>API-Miner</em>, <em>Senatus</em>, <em>Ledgit</em>, <em>DeepClean</em>) covering code intelligence, anomaly detection, federated training on sensitive data, and machine unlearning. The associated patents (25+ granted US patents to date) sit mostly in code intelligence, federated learning, and secure retrieval.
-</p>
-
-<h2>Efficient, interpretable architectures</h2>
-
-<p>
-A consistent preference in this work is for small, interpretable modules that recover most of the benefit of heavier networks. <em>DeepLPF</em> (CVPR 2020) introduced learnable local parametric filters for image enhancement. <em>CURL</em> (ICPR 2020) introduced neural curve layers, a differentiable colour-curve module that performed competitively with much larger image-enhancement networks on three benchmarks. <em>SIDGAN</em> (ECCV 2020) introduced a synthetic-data pipeline for training low-light video models where real labelled data is unavailable.
-</p>
-
-<p>
-The throughline is to prefer the right inductive bias over additional scale, where the problem allows. This matters in deployment: smaller, interpretable modules tend to be easier to ship, audit, and operate under distribution shift.
-</p>
-
-<h2>Decision systems and infrastructure-aware ML</h2>
-
-<p>
-More recent work has concerned systems that make decisions under uncertainty: agents with calibrated self-evaluation, anomaly detection over network alarms and cryptocurrency transactions, biased sampling and graph-feedback methods for streaming classification, and calibrated code-quality scoring. The unifying question is how to engineer reliability into systems that are statistical by nature, with awareness of the infrastructure those systems actually run on.
-</p>
-
-<h2>How I operate</h2>
-
-<ul>
-<li><strong>A preference for systems that ship.</strong> Production work has made me cautious about evaluations that only cover held-out test sets. The most useful benchmarks tend to resemble the eventual deployment environment.</li>
-<li><strong>Small, cross-functional teams.</strong> Much of the work that held up best came from compact teams combining research, engineering, and product judgement in the same room, rather than from organisational scale.</li>
-<li><strong>Inductive bias before scale.</strong> <em>DeepLPF</em> and <em>CURL</em> are ~600-line modules. Several of the hashing papers replace a heavy lookup with a few learned bits. Where the problem rewards careful structure over more parameters, I prefer to take that route.</li>
-<li><strong>Writing as a way of thinking.</strong> I publish technical essays on <em>Towards Data Science</em> and Medium because writing for practitioners is a reliable way to surface gaps in my own understanding.</li>
-</ul>
-
-<hr>
-
-<p style="color: var(--fg-muted); font-size: .9rem;">
-Full list of papers and patents on the <a href="/#publications">home page</a>. Some of the names that recur in the bibliography, among them Victor Lavrenko (originator of relevance models), Miles Osborne, Charles Sutton and Greg Slabaugh, shaped my thinking in different ways over the years.
-</p>
-
-</section>
+  <nav class="research-next" aria-label="Research links">
+    <a href="/publications/">All publications <span aria-hidden="true">→</span></a>
+    <a href="/patents/">Patent record <span aria-hidden="true">→</span></a>
+    <a href="https://github.com/{{ site.github_username }}" target="_blank" rel="noopener">Code on GitHub <span aria-hidden="true">↗</span></a>
+    <a href="{{ site.scholar_url }}" target="_blank" rel="noopener">Google Scholar <span aria-hidden="true">↗</span></a>
+  </nav>
+</article>

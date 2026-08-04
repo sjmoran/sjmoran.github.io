@@ -34,7 +34,7 @@
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Newsreader:opsz,wght@6..72,500;6..72,600&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="{{ '/assets/css/style.css?v=' | append: site.github.build_revision | relative_url }}">
 
@@ -57,13 +57,12 @@
     "name": "Sean Moran",
     "url": "{{ site.url }}",
     "image": "{{ site.url }}/images/sean.png",
-    "jobTitle": "Applied AI Leader",
+    "jobTitle": "AI Researcher and Engineer",
     "description": "{{ site.long_description }}",
-    "worksFor": { "@type": "Organization", "name": "JPMorgan Chase" },
     "hasOccupation": {
       "@type": "Occupation",
-      "name": "Applied AI Leader",
-      "description": "Building and leading applied AI teams; deploying production GenAI in regulated, operationally complex environments; enterprise AI transformation at executive level.",
+      "name": "AI Researcher and Engineer",
+      "description": "Research and engineering in retrieval, reliable AI systems, code intelligence, federated learning, and production generative AI.",
       "occupationLocation": { "@type": "City", "name": "London" }
     },
     "alumniOf": { "@type": "CollegeOrUniversity", "name": "University of Edinburgh" },
@@ -154,13 +153,11 @@
         <span class="brand-name">Sean Moran</span>
       </a>
       <nav class="topnav" aria-label="Primary">
-        <a href="/#work">Work</a>
-        <a href="/research/">Research</a>
-        <a href="/#patents">Patents</a>
-        <a href="/#publications">Publications</a>
-        <a href="/#writing">Writing</a>
-        <a href="/#talks">Talks</a>
-        <a href="/#contact">Contact</a>
+        <a href="/research/"{% if page.url == '/research/' %} aria-current="page"{% endif %}>Research</a>
+        <a href="/#work"{% if page.url == '/' %} aria-current="page"{% endif %}>Work</a>
+        <a href="/writing/"{% if page.url == '/writing/' %} aria-current="page"{% endif %}>Writing</a>
+        <a href="/publications/"{% if page.url == '/publications/' %} aria-current="page"{% endif %}>Publications</a>
+        <a href="/patents/"{% if page.url == '/patents/' %} aria-current="page"{% endif %}>Patents</a>
       </nav>
       <button class="theme-toggle" type="button" aria-label="Toggle dark mode" onclick="(function(){var d=document.documentElement;d.classList.toggle('dark');try{localStorage.setItem('theme',d.classList.contains('dark')?'dark':'light')}catch(e){}})()">
         <span class="sun" aria-hidden="true">☀︎</span>
@@ -177,11 +174,11 @@
     <div class="container footer-inner">
       <div>© {{ 'now' | date: '%Y' }} Sean Moran · London</div>
       <div class="footer-links">
+        <a href="/research/">Research</a>
+        <a href="/publications/">Publications</a>
+        <a href="/patents/">Patents</a>
         <a href="{{ site.scholar_url }}" target="_blank" rel="noopener">Scholar</a>
         <a href="https://github.com/{{ site.github_username }}" target="_blank" rel="noopener">GitHub</a>
-        <a href="{{ site.linkedin_url }}" target="_blank" rel="noopener">LinkedIn</a>
-        <a href="{{ site.huggingface_url }}" target="_blank" rel="noopener">Hugging Face</a>
-        <a href="{{ site.medium_url }}" target="_blank" rel="noopener">Medium</a>
       </div>
     </div>
   </footer>

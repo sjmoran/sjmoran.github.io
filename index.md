@@ -5,11 +5,7 @@ title: Sean Moran
 
 {% include hero.html %}
 {% include impact.html %}
-{% include now.html %}
 {% include selected-work.html %}
-{% include patents.html %}
-{% include publications.html %}
-{% include writing.html %}
-{% include talks.html %}
-{% include side-projects.html %}
+{% include featured-writing.html %}
+{% include record.html %}
 {% include contact.html %}
