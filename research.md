@@ -57,7 +57,7 @@ More recent work has concerned systems that make decisions under uncertainty: ag
 
 <ul>
 <li><strong>A preference for systems that ship.</strong> Production work has made me cautious about evaluations that only cover held-out test sets. The most useful benchmarks tend to resemble the eventual deployment environment.</li>
-<li><strong>Small, cross-functional teams.</strong> Much of the work I am proudest of has come from compact teams that combine research, engineering, and product judgement in the same room, rather than from organisational scale.</li>
+<li><strong>Small, cross-functional teams.</strong> Much of the work that held up best came from compact teams combining research, engineering, and product judgement in the same room, rather than from organisational scale.</li>
 <li><strong>Inductive bias before scale.</strong> <em>DeepLPF</em> and <em>CURL</em> are ~600-line modules. Several of the hashing papers replace a heavy lookup with a few learned bits. Where the problem rewards careful structure over more parameters, I prefer to take that route.</li>
 <li><strong>Writing as a way of thinking.</strong> I publish technical essays on <em>Towards Data Science</em> and Medium because writing for practitioners is a reliable way to surface gaps in my own understanding.</li>
 </ul>
