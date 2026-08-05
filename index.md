@@ -4,6 +4,7 @@ title: Sean Moran
 ---
 
 <article class="home-page">
+  <h1 class="visually-hidden">Sean Moran</h1>
   <div class="intro">
     <p>I am an AI researcher and engineer based in London. I work on information retrieval, code intelligence, reliable AI systems, and machine learning for settings where privacy, auditability, and operational constraints matter.</p>
 
