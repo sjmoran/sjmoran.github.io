@@ -107,6 +107,13 @@ input:focus-visible {
   line-height: 1.5;
 }
 
+.profile-photo {
+  display: block;
+  width: 7.25rem;
+  height: auto;
+  margin: 0 0 1.35rem;
+}
+
 .identity,
 .identity:visited {
   display: inline-block;
@@ -533,12 +540,13 @@ strong {
     margin-bottom: 1rem;
   }
 
-  .role {
-    display: inline;
+  .profile-photo {
+    width: 6rem;
+    margin-bottom: 1rem;
   }
 
-  .role br {
-    display: none;
+  .role {
+    display: inline;
   }
 
   .location {
