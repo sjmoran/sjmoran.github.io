@@ -5,10 +5,9 @@ permalink: /talks/
 ---
 
 <div class="archive-page">
-  <header class="page-intro">
-    <span class="eyebrow">Public work</span>
-    <h1>Talks, code, datasets, and demos.</h1>
-    <p>Materials that make the work easier to inspect, reproduce, and use.</p>
+  <header class="page-header">
+    <h1>Public work</h1>
+    <p>Talks, open-source software, datasets, and demonstrations.</p>
   </header>
 
   {% include talks.html %}
