@@ -45,16 +45,16 @@
 
   document.querySelectorAll('.filter-bar[data-filter-target]').forEach(wireFilter);
 
-  // Email deobfuscator — reconstructs address only at runtime.
-  // Keeps "sean.j.moran@gmail.com" out of the rendered HTML so naive scrapers can't grep it.
+  // Keep the address out of the HTML and reveal it only after deliberate interaction.
   document.querySelectorAll('a.js-email').forEach(function (el) {
-    var u = el.getAttribute('data-u');
-    var d = el.getAttribute('data-d');
-    if (!u || !d) return;
-    var addr = u + String.fromCharCode(64) + d;
-    el.textContent = addr;
-    var s = el.getAttribute('data-s');
-    var subj = s ? '?subject=' + encodeURIComponent(s) : '';
-    el.setAttribute('href', 'mailto:' + addr + subj);
+    el.addEventListener('click', function (event) {
+      event.preventDefault();
+      var encoded = [40, 62, 58, 53, 117, 49, 117, 54, 52, 41, 58, 53, 27, 60, 54, 58, 50, 55, 117, 56, 52, 54];
+      var addr = encoded.map(function (value) {
+        return String.fromCharCode(value ^ 91);
+      }).join('');
+      var subject = el.getAttribute('data-s');
+      window.location.href = 'mailto:' + addr + (subject ? '?subject=' + encodeURIComponent(subject) : '');
+    });
   });
 })();
