@@ -311,31 +311,30 @@ zeros a little higher up for about a hundred times the compute.</p>
 and 1.5772 is one plus Euler’s constant. The prime signal is (E(X) − log
 2π)/√X, where the constant log 2π ≈ 1.84 comes from the explicit
 formula.</p>
-<div class="sourceCode" id="cb1"><pre
-class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> mangoldt(N):                       <span class="co"># log p at prime powers, else 0</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    lam, is_p <span class="op">=</span> np.zeros(N <span class="op">+</span> <span class="dv">1</span>), np.ones(N <span class="op">+</span> <span class="dv">1</span>, <span class="bu">bool</span>)</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    is_p[:<span class="dv">2</span>] <span class="op">=</span> <span class="va">False</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> p <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">2</span>, <span class="bu">int</span>(N<span class="op">**</span><span class="fl">0.5</span>) <span class="op">+</span> <span class="dv">1</span>):</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> is_p[p]: is_p[p<span class="op">*</span>p::p] <span class="op">=</span> <span class="va">False</span></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> p <span class="kw">in</span> np.nonzero(is_p)[<span class="dv">0</span>]:</span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>        q <span class="op">=</span> p</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>        <span class="cf">while</span> q <span class="op">&lt;=</span> N: lam[q] <span class="op">=</span> np.log(p)<span class="op">;</span> q <span class="op">*=</span> p</span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> lam</span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>lam <span class="op">=</span> mangoldt(<span class="dv">10</span><span class="op">**</span><span class="dv">7</span>)</span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>n <span class="op">=</span> np.arange(lam.size, dtype<span class="op">=</span><span class="bu">float</span>)</span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>A <span class="op">=</span> np.cumsum(np.divide(lam, n, out<span class="op">=</span>np.zeros_like(lam), where<span class="op">=</span>n <span class="op">&gt;</span> <span class="dv">0</span>))</span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>psi <span class="op">=</span> np.cumsum(lam)</span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>t <span class="op">=</span> np.linspace(np.log(<span class="dv">50</span>), np.log(<span class="fl">1e7</span>), <span class="dv">2</span><span class="op">**</span><span class="dv">16</span>)</span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> np.exp(t)<span class="op">;</span> k <span class="op">=</span> X.astype(<span class="bu">int</span>)</span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>E <span class="op">=</span> X<span class="op">*</span>A[k] <span class="op">-</span> psi[k] <span class="op">-</span> X<span class="op">*</span>np.log(X) <span class="op">+</span> (<span class="dv">1</span> <span class="op">+</span> np.euler_gamma)<span class="op">*</span>X</span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>r <span class="op">=</span> (E <span class="op">-</span> np.log(<span class="dv">2</span><span class="op">*</span>np.pi)) <span class="op">/</span> np.sqrt(X)        <span class="co"># the prime signal</span></span>
-<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>w <span class="op">=</span> (r <span class="op">-</span> r.mean()) <span class="op">*</span> np.hanning(t.size)</span>
-<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>g <span class="op">=</span> np.linspace(<span class="dv">2</span>, <span class="dv">60</span>, <span class="dv">1200</span>)                   <span class="co"># candidate frequencies</span></span>
-<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>P <span class="op">=</span> np.array([<span class="bu">abs</span>(np.exp(<span class="op">-</span><span class="ot">1j</span><span class="op">*</span>f<span class="op">*</span>t) <span class="op">@</span> w) <span class="cf">for</span> f <span class="kw">in</span> g])</span>
-<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>peaks <span class="op">=</span> P <span class="op">*</span> (<span class="fl">0.25</span> <span class="op">+</span> g<span class="op">**</span><span class="dv">2</span>)                      <span class="co"># peaks sit at the zeros</span></span></code></pre></div>
+<pre><code>import numpy as np
+
+def mangoldt(N):                       # log p at prime powers, else 0
+    lam, is_p = np.zeros(N + 1), np.ones(N + 1, bool)
+    is_p[:2] = False
+    for p in range(2, int(N**0.5) + 1):
+        if is_p[p]: is_p[p*p::p] = False
+    for p in np.nonzero(is_p)[0]:
+        q = p
+        while q &lt;= N: lam[q] = np.log(p); q *= p
+    return lam
+
+lam = mangoldt(10**7)
+n = np.arange(lam.size, dtype=float)
+A = np.cumsum(np.divide(lam, n, out=np.zeros_like(lam), where=n &gt; 0))
+psi = np.cumsum(lam)
+t = np.linspace(np.log(50), np.log(1e7), 2**16)
+X = np.exp(t); k = X.astype(int)
+E = X*A[k] - psi[k] - X*np.log(X) + (1 + np.euler_gamma)*X
+r = (E - np.log(2*np.pi)) / np.sqrt(X)        # the prime signal
+w = (r - r.mean()) * np.hanning(t.size)
+g = np.linspace(2, 60, 1200)                   # candidate frequencies
+P = np.array([abs(np.exp(-1j*f*t) @ w) for f in g])
+peaks = P * (0.25 + g**2)                      # peaks sit at the zeros</code></pre>
 <h2 id="references">References</h2>
 <ol type="1">
 <li>L. Alpöge (2026). Remark accompanying the Lean proof of the Riemann
