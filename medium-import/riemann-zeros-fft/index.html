@@ -10,16 +10,20 @@
 <body>
 <article>
 <h1>Finding the Riemann Zeros in a Fourier Transform of the Primes</h1>
-<p><em>Count the primes, treat the counting error as a time series, and
-its spectrum is the set of zeros of the zeta function. A data
-scientist’s route into the Riemann hypothesis and the ideas behind this
-month’s proof.</em></p>
-<p>This week I counted every prime up to a trillion, turned the counting
-error into a time series, and ran a Fourier transform over it. I
-expected a handful of blurry bumps. Instead the spectrum had 79 sharp
-peaks below frequency 200, and every one of them sat within 0.03 of a
-zero of the Riemann zeta function. None of the 79 zeros in that range
-was missing.</p>
+<p><em>The number of primes never quite matches its textbook estimate.
+Treat the mismatch as a time series and its spectrum is the set of zeros
+of the Riemann zeta function. A data scientist’s route into the Riemann
+hypothesis and the ideas behind this month’s proof.</em></p>
+<p>Pick a number X and count the primes below it. There is a standard
+formula that predicts the count, and it is close but never exact: the
+true count runs a little above the prediction, then a little below, and
+keeps wobbling as X grows. This week I measured that wobble for every X
+up to a trillion, treated it as a time series, and ran a Fourier
+transform over it.</p>
+<p>I expected a handful of blurry bumps. Instead the spectrum had 79
+sharp peaks below frequency 200. Every one of them sat within 0.03 of a
+zero of the Riemann zeta function, a function built from the primes that
+I explain below, and none of the 79 zeros in that range was missing.</p>
 <figure>
 <img src="https://sjmoran.github.io/medium-import/riemann-zeros-fft/images/fig1-spectrum.png" alt="Amplitude spectrum of the prime signal with 79 sharp peaks below frequency 200, each on a tick marking a zeta zero">
 <figcaption>
