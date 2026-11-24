@@ -10,14 +10,16 @@
 <body>
 <article>
 <h1>Finding the Riemann Zeros in a Fourier Transform of the Primes</h1>
-<p><em>An intuitive guide for data scientists to the Riemann hypothesis
-and the main ideas behind the new proof, using signals, spectra and
-covariance matrices.</em></p>
-<p>I counted every prime up to a trillion, turned the counting error
-into a signal, and took its Fourier transform. The spectrum has 79 sharp
-peaks below frequency 200. Each peak sits within 0.03 of a zero of the
-Riemann zeta function, and none of the 79 zeros in that range is
-missing.</p>
+<p><em>Count the primes, treat the counting error as a time series, and
+its spectrum is the set of zeros of the zeta function. A data
+scientist’s route into the Riemann hypothesis and the ideas behind this
+month’s proof.</em></p>
+<p>This week I counted every prime up to a trillion, turned the counting
+error into a time series, and ran a Fourier transform over it. I
+expected a handful of blurry bumps. Instead the spectrum had 79 sharp
+peaks below frequency 200, and every one of them sat within 0.03 of a
+zero of the Riemann zeta function. None of the 79 zeros in that range
+was missing.</p>
 <figure>
 <img src="https://sjmoran.github.io/medium-import/riemann-zeros-fft/images/fig1-spectrum.png" alt="Amplitude spectrum of the prime signal with 79 sharp peaks below frequency 200, each on a tick marking a zeta zero">
 <figcaption>
@@ -27,50 +29,44 @@ peak has a similar height. Ticks along the bottom mark the 79 zeta zeros
 below 200. Source: image by author.
 </figcaption>
 </figure>
-<p>Those zeros are what the Riemann hypothesis is about. The hypothesis
-was stated in 1859. On 20 November 2026 Levent Alpöge announced a proof,
-written in Lean, a programming language in which a small trusted program
-checks every step of a proof. The next day the maintainers of Lean and
-its mathematics library, Mathlib, certified it [2].</p>
-<p>The proof is 17 million lines long. The steps below build up what the
-hypothesis says and how the proof works, using ideas a data scientist
-already knows. The mathematics in Steps 1 to 4 is not new; most of it
-goes back to Riemann. By the end you should be able to explain four
-things:</p>
+<p>Those zeros are the subject of the Riemann hypothesis, which Bernhard
+Riemann stated in 1859 and which the Clay Mathematics Institute listed
+in 2000 as one of its seven Millennium Prize Problems. On 20 November
+2026 Levent Alpöge announced a proof. He wrote it in Lean, a programming
+language in which a small trusted program checks every step of a proof,
+and the next day the maintainers of Lean and its mathematics library,
+Mathlib, certified it [2].</p>
+<p>The proof runs to 17 million lines, which is too long to read. I
+wanted to see how far a data scientist can get with tools they already
+use: Fourier transforms, time series and covariance matrices.</p>
+<p><strong>Takeaways</strong></p>
 <ul>
-<li><strong>What the zeros are.</strong> They are the frequencies of a
-signal made from the primes.</li>
-<li><strong>What the hypothesis says.</strong> None of those waves grows
-in size over time.</li>
-<li><strong>Why it reduces to one inequality.</strong> A signal that
-never rises above a ceiling cannot contain a growing wave.</li>
-<li><strong>How the proof gets that inequality.</strong> It finds a
-quantity that can never be negative, and then sharpens it step by
-step.</li>
+<li>The error in counting primes is a sum of waves, one per zeta zero,
+and a Fourier transform recovers the zeros from the primes alone.</li>
+<li>The Riemann hypothesis says none of those waves grows in size.</li>
+<li>Proving it comes down to one inequality, because a signal that stays
+under a fixed ceiling cannot contain a growing wave.</li>
+<li>Alpöge’s proof gets the inequality from a quantity that can never be
+negative, sharpened repeatedly with a construction called a theta
+lift.</li>
 </ul>
-<h2 id="step-1-the-primes-make-a-signal">Step 1: the primes make a
-signal</h2>
-<p>Let us start with counting. There are 25 primes up to 100, 78,498 up
-to a million, and 37,607,912,018 up to a trillion. The count grows
-smoothly on average, and there is a good formula for that average,
-called li(X). Up to a million, li(X) predicts 78,628 primes, so it is
-off by 130. Up to a trillion it is off by about 38,000.</p>
-<p>Suppose we compare those errors with √X. At a million, √X is 1,000;
-at a trillion it is a million. In both cases the error is well below √X.
-This is the size of error you would expect from a sum of X random coin
-flips, so in this sense the primes behave like noise.</p>
-<p>To study the error as a signal, we make three small changes:</p>
-<ul>
-<li><strong>We weight and smooth the count.</strong> Each prime p counts
-as log p instead of 1, which makes the average trend simply X. We also
-smooth the running total, so that small jumps average out. The resulting
-error is called E(X); its formula is in the last section.</li>
-<li><strong>We divide by √X.</strong> This keeps the signal at a
-constant size.</li>
-<li><strong>We use log X as the time axis.</strong> We will write t for
-log X.</li>
-</ul>
-<p>The result is a time series that I will call the prime signal.</p>
+<h2 id="the-primes-make-a-noisy-looking-signal">The primes make a
+noisy-looking signal</h2>
+<p>There are 25 primes below 100, 78,498 below a million and
+37,607,912,018 below a trillion. On average the count grows smoothly,
+and a function called li(X) predicts it well. Below a million, li(X) is
+off by 130. Below a trillion it is off by about 38,000, out of 37.6
+billion.</p>
+<p>A better yardstick is √X. That is the size of error you would expect
+from adding up X random coin flips, and it comes to 1,000 at a million
+and 1,000,000 at a trillion. The prime count stays well inside it in
+both cases, as random noise would.</p>
+<p>To look at the error as a signal I made three changes. Each prime p
+counts as log p instead of 1, which makes the average trend equal to X,
+and the running total is smoothed so that individual jumps average out;
+the formula is at the end of the post. I divide the error by √X so it
+keeps a constant size. And I use t = log X as the time axis. I will call
+the result the prime signal.</p>
 <figure>
 <img src="https://sjmoran.github.io/medium-import/riemann-zeros-fft/images/fig2-signal.png" alt="The prime signal over t = log X from X = 50 to a trillion, staying within about ±0.025, well inside dashed lines at ±0.0462">
 <figcaption>
@@ -79,33 +75,28 @@ from 50 to a trillion. Dashed lines at ±0.0462 mark the largest value
 allowed if the Riemann hypothesis holds. Source: image by author.
 </figcaption>
 </figure>
-<p>The prime signal looks like stationary noise. It wiggles around zero,
-with no trend and no growing variance.</p>
-<h2 id="step-2-each-zero-is-one-wave-in-the-signal">Step 2: each zero is
-one wave in the signal</h2>
-<p>The zeta function is a sum over all whole numbers:</p>
+<p>Over 24 units of t, from X = 50 to a trillion, the prime signal
+wiggles around zero with no trend and no growing variance. It never gets
+above 0.025.</p>
+<h2 id="each-zero-of-zeta-puts-one-wave-into-the-signal">Each zero of
+zeta puts one wave into the signal</h2>
+<p>The zeta function adds up one over every whole number raised to a
+power s:</p>
 <p>
 <img src="https://sjmoran.github.io/medium-import/riemann-zeros-fft/images/eq1-zeta-sum.png" alt="ζ(s) = 1 + 1/2^s + 1/3^s + 1/4^s + …">
 </p>
-<p>Euler showed in 1737 that the same function can be written as a
-product with one factor per prime [4]. This works because every whole
-number breaks into primes in exactly one way. So zeta is a compact way
-of storing the primes.</p>
-<p>A zero of zeta is a value of s where ζ(s) = 0. The interesting zeros
-are complex numbers, and they all lie in a strip where the real part is
-between 0 and 1. A complex number has two parts, so each zero is a point
-in that strip. We will write a zero as a + iγ, where a is its position
-from left to right and γ is its height.</p>
-<p>Each zero puts one wave into the prime signal, and its two parts
-control that wave:</p>
-<ul>
-<li><strong>The height γ is the wave’s frequency.</strong> The zero at
-height 14.13 gives a wave that repeats every 2π/14.13 ≈ 0.44 units of
-t.</li>
-<li><strong>The position a sets the wave’s growth.</strong> The wave
-grows at rate a − ½ in t. At a = ½ it keeps a constant size; at a = 0.6
-it would grow.</li>
-</ul>
+<p>Euler showed in 1737 that the same function is a product with one
+factor for each prime [4], because every whole number splits into primes
+in exactly one way. Everything zeta does is driven by the primes.</p>
+<p>Its zeros, the values of s where ζ(s) = 0, are complex numbers. The
+ones that matter all lie in a strip where the real part is between 0 and
+1, and I will write each one as a + iγ, with a its position across the
+strip and γ its height.</p>
+<p>Each zero contributes one wave to the prime signal. The height γ sets
+the wave’s frequency: the lowest zero, at height 14.13, gives a wave
+that repeats every 2π/14.13 ≈ 0.44 units of t. The position a sets its
+growth, at rate a − ½. A zero at a = ½ gives a wave of constant size,
+and a zero at a = 0.6 would give one that grows.</p>
 <figure>
 <img src="https://sjmoran.github.io/medium-import/riemann-zeros-fft/images/d1-knobs.png" alt="Left: zeros plotted as points with real part a across and height up, all on the line a = ½, plus a hypothetical zero off the line. Right: a wave of constant size for a = ½ and a growing wave for a &gt; ½.">
 <figcaption>
@@ -114,25 +105,22 @@ frequency and its position a sets the wave's growth. Zeros on the line a
 = ½ give waves of constant size. Source: image by author.
 </figcaption>
 </figure>
-<p>If you have used an FFT, this will feel familiar. A zero at a + iγ
-contributes X raised to the power a + iγ to the counting error. After
-dividing by √X, that term is exp((a − ½)t) times exp(iγt): a growth
-factor times a rotating phasor, the same phasor an FFT uses. The
-connection to the primes is direct. The zeros of ζ are the poles of
-ζ′/ζ, the derivative of ζ divided by ζ, and the coefficients of ζ′/ζ are
-exactly the prime weights. So the zeros play the role that poles play in
-a transfer function, each one contributing a mode with its own frequency
-and growth rate.</p>
-<p>Riemann’s explicit formula makes this exact [3, 5]. It says that the
-prime signal is the sum of these waves, one per zero, with amplitude
-2/(¼ + γ²):</p>
+<p>If you have built a filter, this works like one. The zeros of ζ are
+the poles of ζ′/ζ, the derivative of ζ divided by ζ, and the
+coefficients of ζ′/ζ are exactly the prime weights. A zero at a + iγ
+behaves like a pole in a transfer function. After dividing by √X, its
+contribution is exp((a − ½)t) times exp(iγt), a growth factor times the
+same rotating phasor an FFT uses.</p>
+<p>Riemann’s explicit formula turns this into an exact statement [3, 5].
+The prime signal is the sum of these waves, one per zero, and the wave
+from the zero at height γ has amplitude 2/(¼ + γ²):</p>
 <p>
 <img src="https://sjmoran.github.io/medium-import/riemann-zeros-fft/images/eq6-cosines.png" alt="(E(X) − log 2π)/√X ≈ Σ 2·cos(γt) / (¼ + γ²), summed over the zeros, with t = log X">
 </p>
-<p>We can test this in two directions. First, adding up the waves from
-the zeros should rebuild the prime signal. It does: with the first 3
-zeros the rebuild has correlation 0.94 with the real signal, and with
-the first 100 zeros the correlation is 0.9998.</p>
+<p>The formula can be tested from both sides. Adding up the waves from
+the zeros should rebuild the signal, and it does. With the first three
+zeros the rebuild already has correlation 0.94 with the real thing; with
+the first hundred it reaches 0.9998.</p>
 <figure>
 <img src="https://sjmoran.github.io/medium-import/riemann-zeros-fft/images/fig3-rebuild.png" alt="Two panels: the prime signal with its rebuild from 3 zeros, which follows the broad shape, and from 100 zeros, which overlaps it almost exactly">
 <figcaption>
@@ -141,34 +129,33 @@ Figure 4. The prime signal (blue) and the sum of cosines from the first
 from 400 to 60,000. Source: image by author.
 </figcaption>
 </figure>
-<p>Second, the Fourier transform of the prime signal should have a peak
-at each zero’s height. That is Figure 1. To make it readable I multiply
-the spectrum by ¼ + γ², which undoes the shrinking amplitudes, and I
-apply a Hann window to reduce leakage. With primes up to a trillion the
-time axis is 23.7 units long, which is enough to separate zeros about
-0.5 apart. The closest pair below 200 is 0.72 apart, so every zero
-appears as its own peak.</p>
-<h2 id="step-3-the-riemann-hypothesis-says-no-wave-grows">Step 3: the
-Riemann hypothesis says no wave grows</h2>
-<p>We can now state the hypothesis in one sentence. <strong>The Riemann
-hypothesis says that every zero has a = ½.</strong> All the zeros lie on
-one vertical line, called the critical line, and so every wave in the
-prime signal keeps a constant size forever.</p>
-<p>Suppose instead a single zero had a = 0.51. Its wave would grow
-slowly, the prime signal would gain a component that gets steadily
-louder, and the series would stop being stationary.</p>
-<p>Data alone cannot settle this, because a bad zero could sit high up.
-Take a zero at height one million with a = 0.51. Its wave starts with
+<p>Going the other way, the spectrum of the prime signal should peak at
+every zero’s height, which is what Figure 1 shows. To make the peaks
+comparable I multiply the spectrum by ¼ + γ², which undoes the shrinking
+amplitudes, and I use a Hann window to limit leakage. A trillion’s worth
+of primes gives 23.7 units of t, enough to separate frequencies about
+0.5 apart. The closest pair of zeros below 200 is 0.72 apart, at heights
+184.87 and 185.60, so each zero gets its own peak.</p>
+<h2 id="the-hypothesis-says-no-wave-grows">The hypothesis says no wave
+grows</h2>
+<p>The Riemann hypothesis says that <strong>every zero has a =
+½</strong>, so the zeros all sit on one vertical line, the critical
+line, and every wave in the prime signal keeps the same size
+forever.</p>
+<p>A single zero at a = 0.51 would break this. Its wave would grow
+slowly, and the prime signal would stop being stationary.</p>
+<p>Data alone cannot settle the question, because such a zero could hide
+for a long time. Put it at height one million. Its wave starts with
 amplitude about 2 × 10⁻¹² and grows by a factor of e every 100 units of
-t. It would become visible only around X = 10¹⁰³⁶, a number with over a
-thousand digits. Computers have checked that the first ten trillion
-zeros all lie on the line [10], but no amount of checking covers all of
-them.</p>
-<h2 id="step-4-one-inequality-is-enough">Step 4: one inequality is
-enough</h2>
+t, so it would not become visible until X reached about 10¹⁰³⁶, a number
+with over a thousand digits. Platt and Trudgian checked that the first
+ten trillion or so zeros lie on the line [10], which says nothing about
+a zero at height one quadrillion.</p>
+<h2 id="a-single-ceiling-would-prove-it">A single ceiling would prove
+it</h2>
 <p>A wave of constant size spends half its time above zero and half
-below. A wave whose size keeps growing will eventually rise above any
-ceiling you choose.</p>
+below. A wave whose size keeps growing will, sooner or later, rise above
+any ceiling you care to draw.</p>
 <figure>
 <img src="https://sjmoran.github.io/medium-import/riemann-zeros-fft/images/d2-ceiling.png" alt="Left: a cosine of fixed size stays below a horizontal ceiling. Right: a growing cosine eventually crosses the ceiling.">
 <figcaption>
@@ -176,18 +163,17 @@ Figure 5. A wave of fixed size stays under a fixed ceiling. A growing
 wave eventually breaks through it. Source: image by author.
 </figcaption>
 </figure>
-<p>So suppose we could prove a ceiling: the prime signal stays below
-some constant C for all large X. Then the signal cannot contain a
-growing wave, and no zero can have a above ½. Process monitoring uses
-the same logic. A metric that never breaches its upper control limit
-cannot contain an oscillation whose swings keep growing. Edmund Landau
-made this argument rigorous in 1905 [6]. It needs care because there are
-infinitely many waves, and it relies on the gap between the ceiling and
-the signal never being negative.</p>
-<p>That handles zeros to the right of the line. Zeros to the left are
-handled by symmetry. Every zero has a mirror image across the critical
-line, so a zero on the left would come with one on the right, and the
-ceiling has already ruled that out.</p>
+<p>So if you could prove that the prime signal stays below some constant
+for all large X, no wave in it could be growing, and no zero could have
+a above ½. Process engineers use the same reasoning with control charts:
+a metric that never breaches its upper control limit cannot be hiding an
+oscillation with growing swings. Edmund Landau made the argument
+rigorous in 1905 [6]. With infinitely many waves in play it needs care,
+and it relies on the gap between the ceiling and the signal never going
+negative.</p>
+<p>Zeros to the left of the line take care of themselves, because zeros
+come in mirror pairs across it. A zero at a = 0.3 would have a partner
+at a = 0.7, and the ceiling has already ruled that one out.</p>
 <figure>
 <img src="https://sjmoran.github.io/medium-import/riemann-zeros-fft/images/d3-mirror.png" alt="Two hypothetical zeros mirrored across the line a = ½; the right one is ruled out by the ceiling, so the left one is too.">
 <figcaption>
@@ -197,71 +183,71 @@ out the right side rules out the left. Source: image by author.
 </figure>
 <p>Riemann derived the mirror symmetry from a sum of Gaussians, using
 the fact that a Gaussian keeps its shape under the Fourier transform.
-That sum of Gaussians is called a theta function. It will come back in
-the proof.</p>
-<p><strong>The Riemann hypothesis is therefore equivalent to a single
-ceiling on the prime signal.</strong> Figure 2 shows the ceiling holding
-up to a trillion. The proof has to show it holds for every large X.</p>
-<h2 id="step-5-the-proof-in-four-moves">Step 5: the proof in four
-moves</h2>
-<p>Alpöge’s proof gets the ceiling in four moves. This section is my
-reading of his remark [1] and of the structure of the Lean files. I
-traced the files but did not rebuild the hardest step, so treat the
-account below as an outline of the argument rather than a check of
-it.</p>
+That sum is called a theta function. The proof uses theta functions
+again, in the theta lifts described below.</p>
+<p>So the Riemann hypothesis is equivalent to one ceiling on the prime
+signal. Figure 2 shows the ceiling holding up to a trillion. The proof
+has to show it holds for every X beyond some point.</p>
+<h2 id="how-the-proof-builds-the-ceiling">How the proof builds the
+ceiling</h2>
+<p>This section is my interpretation, not a check. I read Alpöge’s
+remark [1] and traced the Lean files down to their main input, which I
+could not rebuild.</p>
 <figure>
-<img src="https://sjmoran.github.io/medium-import/riemann-zeros-fft/images/d4-proof.png" alt="Four boxes in a row: Reduce, Positivity, Multiplicity, Bootstrap.">
+<img src="https://sjmoran.github.io/medium-import/riemann-zeros-fft/images/d4-proof.png" alt="Four boxes in a row: Reduce, Positivity, Multiplicity, Bootstrap, with a loop arrow from Bootstrap back to Multiplicity.">
 <figcaption>
-Figure 7. The main moves of the proof as I read them. Source: image by
-author.
+Figure 7. The main moves of the proof, with the bootstrap feeding each
+sharper ceiling back into the next round. Source: image by author.
 </figcaption>
 </figure>
-<p><strong>Move 1: reduce.</strong> This is Step 4. The proof works with
-exactly the smoothed signal we have been plotting; it appears in the
-Lean files under the name Gz. The proof also does more than the Riemann
-hypothesis. It proves the same statement for a whole family of related
-functions, the Dirichlet L-functions, and the Riemann hypothesis is the
-simplest case.</p>
-<p><strong>Move 2: positivity.</strong> A quantity that can never be
-negative is a cheap source of one-sided bounds. Variances are the
-standard example: if you can write something as a variance, you get an
-inequality for free.</p>
-<p>The finite version of the problem shows how this works. Do arithmetic
-modulo a prime p, like a clock with p hours, and count the solutions of
-an equation such as y² = f(x). These counts play the role of the prime
-counts. Instead of infinitely many zeros they have only four, α₁ to α₄,
-and the hypothesis says each has size √p. André Weil proved it in the
-1940s [7].</p>
-<p>Here the hypothesis is a covariance check. Scale the α’s by √p and
-add up their r-th powers:</p>
+<h3 id="reduce-to-the-ceiling">Reduce to the ceiling</h3>
+<p>The proof works with the same smoothed signal plotted in Figure 2; it
+appears in the Lean files under the name Gz. It also proves more than
+the Riemann hypothesis. The same ceiling is established for a whole
+family of related functions, the Dirichlet L-functions, and the Riemann
+hypothesis is the simplest member of the family.</p>
+<h3 id="get-a-weak-ceiling-from-positivity">Get a weak ceiling from
+positivity</h3>
+<p>Quantities that can never be negative are a cheap source of one-sided
+bounds, and every data scientist has used one. A variance is never
+negative, so anything you can write as a variance comes with an
+inequality attached.</p>
+<p>A finite version of the problem shows positivity doing this job. Do
+arithmetic modulo a prime p, like a clock with p hours, and count the
+solutions of an equation such as y² = f(x). These counts behave like the
+prime counts, except that they are governed by four numbers α₁ to α₄
+instead of infinitely many zeros. The hypothesis for this setting says
+each α has size √p, and André Weil proved it in the 1940s [7].</p>
+<p>In this setting the hypothesis is a covariance check. Scale the α’s
+by √p and add up their r-th powers:</p>
 <p>
 <img src="https://sjmoran.github.io/medium-import/riemann-zeros-fft/images/eq9-autocov.png" alt="c(r) = Σ (α_i/√p)^r, with c(−r) = c(r)">
 </p>
-<p>The four α’s come in two complex-conjugate pairs. If every scaled α
+<p>The four α’s come in two complex-conjugate pairs. If each scaled α
 has size 1, c(r) is the autocovariance of a time series made of two
-sinusoids. Its covariance matrix, with entry c(i − j) in row i and
-column j, is then a sum of outer products, and so it has no negative
-eigenvalues. If an α is off the circle, a large enough matrix has a
-negative eigenvalue. I checked nine curves: every matrix up to 29 × 29
-had smallest eigenvalue no lower than −2 × 10⁻¹³, which is rounding
-error. Moving the α’s off the circle by a factor of 1.2 gave −656.</p>
-<p>Weil showed that the same kind of test exists for the primes [8]. The
-Riemann hypothesis is equivalent to a certain quadratic form, built from
-the primes, never being negative. With infinitely many zeros, though,
-there is no finite matrix to check. Alpöge’s remark describes proving
-this positivity for chosen test functions “via a determinant”. A
-determinant of this kind measures the volume spanned by a set of
-vectors, and a squared volume is never negative. My reading of the
-remark is that this positivity already gives a weak ceiling, which rules
-out zeros with a close to 1.</p>
-<p><strong>Move 3: multiplicity.</strong> The weak ceiling is sharpened
-using an idea from the finite version. In 1969 Stepanov proved the curve
-case without Weil’s heavy machinery [9]. His method rests on a budget
-argument. A polynomial of degree d has a budget of d roots. If it
-touches zero with multiplicity 10 at every point you are counting, each
-point costs 10 roots, so there can be at most d/10 points. The hard part
-is building a polynomial of low degree that vanishes to high order at
-all the points at once.</p>
+sinusoids, and the matrix with c(i − j) in row i and column j is a
+covariance matrix with no negative eigenvalues. Push an α off the circle
+and a large enough matrix acquires a negative eigenvalue. Across the
+nine curves I tried, every matrix up to 29 × 29 had smallest eigenvalue
+no lower than −2 × 10⁻¹³, which is rounding error. Moving the α’s off
+the circle by a factor of 1.2 gave −656.</p>
+<p>Weil found the same kind of test for the primes [8]. The Riemann
+hypothesis is equivalent to a certain quadratic form built from the
+primes never going negative. There is no finite matrix to check this
+time, because there are infinitely many zeros. Alpöge’s remark describes
+proving the positivity for well-chosen test functions “via a
+determinant”. A determinant of this kind is the squared volume spanned
+by a set of vectors, and a squared volume cannot be negative. This
+positivity yields a weak ceiling, strong enough to rule out zeros with a
+close to 1.</p>
+<h3 id="sharpen-it-with-multiplicity">Sharpen it with multiplicity</h3>
+<p>The sharpening borrows an idea from the finite version. In 1969
+Stepanov gave a proof of the curve case that avoided Weil’s heavy
+machinery [9], and it rests on a budget argument. A polynomial of degree
+d has room for d roots. If it touches zero with multiplicity 10 at every
+point you are counting, each point uses up 10 of those roots, so there
+can be at most d/10 points. The hard part is building a low-degree
+polynomial that vanishes to high order at every point at once.</p>
 <figure>
 <img src="https://sjmoran.github.io/medium-import/riemann-zeros-fft/images/d5-stepanov.png" alt="Left: a cubic crossing zero at three points. Right: a degree-9 polynomial touching zero flatly at the same three points.">
 <figcaption>
@@ -269,47 +255,47 @@ Figure 8. Higher multiplicity makes each point more expensive, which
 gives a sharper count. Source: image by author.
 </figcaption>
 </figure>
-<p>Alpöge’s remark says the proof gets its multiplicity from theta
+<p>According to the remark, the proof gets its multiplicity from theta
 lifts. A theta lift is a kernel transform built from theta functions,
-the sums of Gaussians from Step 4, in many dimensions:</p>
+the sums of Gaussians from the mirror-symmetry argument, taken in many
+dimensions:</p>
 <p>
 <img src="https://sjmoran.github.io/medium-import/riemann-zeros-fft/images/eq10-lift.png" alt="(Lift f)(g) = ∫ K(g, h) f(h) dh">
 </p>
-<p>You can think of it as multiplying by a kernel matrix that moves a
-function from one space of symmetries to a larger one. The remark says
-each lift “wins multiplicity”, and that the number of lifts grows with
-the scale X being studied. My reading is that the positive quantity from
-Move 2 is made to vanish to higher and higher order, one lift at a time,
-and that each extra order tightens the ceiling in the same way that it
-sharpens Stepanov’s count.</p>
-<p><strong>Move 4: bootstrap.</strong> Each round of the argument turns
-a ceiling into a zero-free region, meaning no zeros with a above some
-value. A better zero-free region then feeds back into a sharper ceiling.
-The remark describes this loop as a bootstrap, and according to it,
-repeated rounds bring the region all the way to the line a = ½, which is
-the Riemann hypothesis.</p>
-<h2 id="what-the-picture-does-not-explain">What the picture does not
-explain</h2>
-<p>The Fourier picture explains what the zeros are, what the hypothesis
-says, and why one inequality is enough. Moves 2 to 4 give the shape of
-the proof. It does not explain why the multiplicity from the theta lifts
-builds up fast enough, and why the errors stay under control across so
-many lifts. Those steps are where the 17 million lines of Lean do their
-work, and I could not rebuild them from the remark.</p>
-<p>If you want to try the spectrum yourself, the code below reproduces
-it up to frequency 60 for primes up to ten million, in a few seconds on
-a laptop. The figures in this post use the same method on primes up to a
-trillion, which took 20 minutes on a 64-core cloud machine, about a
-dollar of compute. The next run I would do is 10¹⁴, which would separate
-zeros a little higher up for about a hundred times the compute.</p>
+<p>Think of it as multiplying by a kernel matrix that carries a function
+from one space of symmetries to a larger one. The remark says each lift
+“wins multiplicity” and that the number of lifts grows with the scale X.
+The positive quantity from the previous step is made to vanish to higher
+and higher order, one lift at a time, and that each extra order tightens
+the ceiling in the way it tightens Stepanov’s count.</p>
+<h3 id="bootstrap-to-½">Bootstrap to ½</h3>
+<p>Each round turns a ceiling into a zero-free region, a band of the
+strip where no zero can sit. A wider band then gives a sharper ceiling
+for the next round. The remark calls this loop a bootstrap, and says
+that repeated rounds push the band all the way to the line a = ½.</p>
+<h2 id="what-the-signal-view-does-not-explain">What the signal view does
+not explain</h2>
+<p>With Fourier transforms and covariance matrices I could follow what
+the zeros are, what the hypothesis says, why one inequality is enough
+and, in outline, how the proof produces that inequality. I could not
+follow why the multiplicity from the theta lifts builds up fast enough,
+or how the error terms stay under control across so many lifts. Those
+parts are in the Lean files, and the remark does not say enough to
+rebuild them.</p>
+<p>You can reproduce the spectrum with the code below. It covers primes
+up to ten million and frequencies up to 60, and runs in a few seconds on
+a laptop. The trillion-prime figures use the same method spread over 64
+cores on a cloud machine, which took 20 minutes and cost about a dollar.
+The next run I would try is 10¹⁴, which would resolve zeros a little
+higher up for roughly a hundred times the compute.</p>
 <h2 id="reproducing-the-spectrum">Reproducing the spectrum</h2>
-<p>The smoothed, weighted error from Step 1 is</p>
+<p>The smoothed, weighted error is</p>
 <p>
 <img src="https://sjmoran.github.io/medium-import/riemann-zeros-fft/images/eq4-E.png" alt="E(X) = Σ_{n ≤ X} Λ(n)(X/n − 1) − X log X + 1.5772·X">
 </p>
 <p>where Λ(n) is log p when n is a power of a prime p and 0 otherwise,
 and 1.5772 is one plus Euler’s constant. The prime signal is (E(X) − log
-2π)/√X, where the constant log 2π ≈ 1.84 comes from the explicit
+2π)/√X; the constant log 2π ≈ 1.84 comes out of the explicit
 formula.</p>
 <pre><code>import numpy as np
 
