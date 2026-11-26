@@ -5,8 +5,14 @@ title: Sean Moran
 
 <article class="home-page">
   <header class="home-hero">
-    <h1>Hi, I’m Sean.</h1>
-    <p class="lede">I build AI systems for a living. In my spare time I pick a question I can’t stop thinking about, build the smallest thing that answers it, and write up what I find.</p>
+    <div class="hero-text">
+      <h1>Hi, I’m Sean.</h1>
+      <p class="lede">I build AI systems for a living. In my spare time I pick a question I can’t stop thinking about, build the smallest thing that answers it, and write up what I find.</p>
+</div>
+    <figure class="hero-figure">
+      <canvas id="simplex" aria-label="Interactive Dirichlet distribution over three words. Its peak, the relevance model p(w|R), follows the pointer; clicks add feedback documents." role="img"></canvas>
+      <figcaption>A relevance model <em>p(w|R)</em> is a point on this triangle, and a Dirichlet says how sure we are of it. Move to set the prior; click to add feedback documents and watch the posterior sharpen.</figcaption>
+    </figure>
   </header>
 
   <section class="content-section" aria-labelledby="recently">
@@ -46,11 +52,6 @@ title: Sean Moran
         <a class="card-img" href="https://towardsdatascience.com/i-built-a-tiny-computer-inside-a-transformer/" target="_blank" rel="noopener" aria-hidden="true" tabindex="-1"><img src="/img/writing/tiny-computer-transformer.jpg" alt="" loading="lazy"></a>
         <h3><a href="https://towardsdatascience.com/i-built-a-tiny-computer-inside-a-transformer/" target="_blank" rel="noopener">I Built a Tiny Computer Inside a Transformer</a></h3>
         <p>The computational "circuits" that emerge inside transformer attention layers, with a hand-traced example of a model reasoning across several steps.</p>
-      </li>
-      <li class="card">
-        <a class="card-img" href="https://towardsdatascience.com/how-relevance-models-foreshadowed-transformers-for-nlp/" target="_blank" rel="noopener" aria-hidden="true" tabindex="-1"><img src="/img/writing/relevance-models.jpg" alt="" loading="lazy"></a>
-        <h3><a href="https://towardsdatascience.com/how-relevance-models-foreshadowed-transformers-for-nlp/" target="_blank" rel="noopener">How Relevance Models Foreshadowed Transformers for NLP</a></h3>
-        <p>Victor Lavrenko's relevance models, traced through cross-encoder reranking to modern attention, drawing out the continuities between classical IR and the transformer.</p>
       </li>
       <li class="card">
         <a class="card-img" href="https://medium.com/@sean.j.moran/the-retrieval-mistake-most-rag-teams-havent-understood-8b864c034ee7" target="_blank" rel="noopener" aria-hidden="true" tabindex="-1"><img src="/img/writing/retrieval-mistake.jpg" alt="" loading="lazy"></a>
@@ -129,3 +130,5 @@ title: Sean Moran
 
 
 </article>
+
+<script src="/assets/js/simplex.js?v={{ site.github.build_revision }}" defer></script>
