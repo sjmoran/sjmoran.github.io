@@ -1,22 +1,26 @@
-// Interactive Dirichlet over a three-word vocabulary: estimating a relevance model p(w|R).
-// Pointer sets the prior mean; each click adds a feedback document (soft counts),
-// so the posterior Dirichlet sharpens around the evidence.
+// After Lavrenko (2004), Figure 4.8: density allocation with Dirichlet kernels.
+// Each training document u_w induces a Dirichlet bump on the simplex A-B-C; the bumps
+// overlap into the generative density p(du). A ghost document follows the pointer
+// (or drifts when idle); clicking adds it to the training set.
 (function () {
   var canvas = document.getElementById('simplex');
   if (!canvas || !canvas.getContext) return;
   var ctx = canvas.getContext('2d');
   var reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  var PRIOR = 6;        // prior strength: alpha0 = 1 + PRIOR * mean
-  var DOC = 5;          // soft counts one feedback document adds
-  var MAXDOCS = 12;
-  var GRID = 150;       // density raster columns
-  var LEVELS = [0.08, 0.2, 0.35, 0.5, 0.65, 0.8, 0.92];
-  var STOPS = [[31, 94, 99], [62, 158, 152], [124, 195, 164], [240, 210, 122], [244, 161, 74], [232, 106, 44]];
+  var BETA = 34;        // kernel concentration: alpha_w = 1 + BETA * u_w
+  var MAXDOCS = 24;
+  var GRID = 170;
+  var LEVELS = [0.06, 0.16, 0.3, 0.48, 0.68, 0.88];
+  var STOPS = [[250, 248, 243], [196, 226, 216], [124, 195, 164], [240, 210, 122], [244, 161, 74], [232, 106, 44]];
+  // Roughly where the training strings sit in Lavrenko's figure.
+  var START = [[0.62, 0.19, 0.19], [0.42, 0.13, 0.45], [0.33, 0.09, 0.58], [0.2, 0.56, 0.24],
+               [0.27, 0.46, 0.27], [0.1, 0.27, 0.63], [0.08, 0.17, 0.75]];
 
   var W, H, V, dpr, rw, rh, raster, rctx, img, field;
-  var mean = [1 / 3, 1 / 3, 1 / 3], target = mean.slice(), docs = [];
-  var pointer = false, t0 = performance.now(), dirty = true, last = '';
+  var docs = START.map(function (d) { return d.slice(); });
+  var ghost = [1 / 3, 1 / 3, 1 / 3], target = ghost.slice(), pointer = false, t0 = performance.now();
+  var dirty = true, last = '';
 
   function size() {
     dpr = Math.min(window.devicePixelRatio || 1, 2);
@@ -24,10 +28,10 @@
     W = r.width; H = r.height;
     canvas.width = Math.round(W * dpr); canvas.height = Math.round(H * dpr);
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-    var side = Math.min(W * 0.94, (H - 50) / (Math.sqrt(3) / 2));
+    var side = Math.min(W - 40, (H - 50) / (Math.sqrt(3) / 2));
     var th = side * Math.sqrt(3) / 2, top = (H - th) / 2 - 2;
     V = [[W / 2, top], [W / 2 - side / 2, top + th], [W / 2 + side / 2, top + th]];
-    rw = GRID; rh = Math.round(GRID * H / W);
+    rw = GRID; rh = Math.max(2, Math.round(GRID * H / W));
     raster = document.createElement('canvas'); raster.width = rw; raster.height = rh;
     rctx = raster.getContext('2d');
     img = rctx.createImageData(rw, rh);
@@ -56,41 +60,58 @@
     return [0, 1, 2].map(function (k) { return STOPS[i][k] + (STOPS[i + 1][k] - STOPS[i][k]) * f; });
   }
 
-  function alpha() {
-    var a = mean.map(function (m) { return 1 + PRIOR * m; });
-    docs.forEach(function (d) { for (var k = 0; k < 3; k++) a[k] += DOC * d[k]; });
-    return a;
+  // log Gamma (Lanczos), for normalised Dirichlet kernels.
+  var LG = [676.5203681218851, -1259.1392167224028, 771.32342877765313, -176.61502916214059,
+            12.507343278686905, -0.13857109526572012, 9.9843695780195716e-6, 1.5056327351493116e-7];
+  function lgamma(z) {
+    if (z < 0.5) return Math.log(Math.PI / Math.sin(Math.PI * z)) - lgamma(1 - z);
+    z -= 1;
+    var x = 0.99999999999980993;
+    for (var i = 0; i < 8; i++) x += LG[i] / (z + i + 1);
+    var t = z + 7.5;
+    return 0.5 * Math.log(2 * Math.PI) + (z + 0.5) * Math.log(t) - t + Math.log(x);
   }
-  function modeOf(a) {
-    var s = a[0] + a[1] + a[2] - 3;
-    return a.map(function (x) { return (x - 1) / s; });
+  function kernel(u) {
+    var a = u.map(function (x) { return 1 + BETA * x; });
+    var c = lgamma(a[0] + a[1] + a[2]) - lgamma(a[0]) - lgamma(a[1]) - lgamma(a[2]);
+    return { a: a, c: c };
   }
 
-  function computeField(a) {
-    var m = modeOf(a), logMax = 0, k;
-    for (k = 0; k < 3; k++) logMax += (a[k] - 1) * Math.log(Math.max(m[k], 1e-9));
-    var d = img.data;
-    for (var j = 0; j < rh; j++) {
-      for (var i = 0; i < rw; i++) {
-        var b = bary((i + 0.5) * W / rw, (j + 0.5) * H / rh), idx = j * rw + i, p = idx * 4;
-        if (b[0] < -0.02 || b[1] < -0.02 || b[2] < -0.02) { field[idx] = -1; d[p + 3] = 0; continue; }
-        var lp = 0;
-        for (k = 0; k < 3; k++) lp += (a[k] - 1) * Math.log(Math.max(b[k], 1e-6));
-        var t = Math.exp(lp - logMax);
-        field[idx] = t;
-        var c = color(Math.pow(t, 0.55));
-        d[p] = c[0]; d[p + 1] = c[1]; d[p + 2] = c[2]; d[p + 3] = 255;
+  function computeField() {
+    var ks = docs.map(kernel).concat([kernel(ghost)]);
+    var wts = docs.map(function () { return 1; }).concat([0.8]);
+    var d = img.data, max = 0, i, j, k, n;
+    for (j = 0; j < rh; j++) {
+      for (i = 0; i < rw; i++) {
+        var b = bary((i + 0.5) * W / rw, (j + 0.5) * H / rh), idx = j * rw + i;
+        if (b[0] < -0.02 || b[1] < -0.02 || b[2] < -0.02) { field[idx] = -1; continue; }
+        var l0 = Math.log(Math.max(b[0], 1e-6)), l1 = Math.log(Math.max(b[1], 1e-6)), l2 = Math.log(Math.max(b[2], 1e-6));
+        var s = 0;
+        for (n = 0; n < ks.length; n++) {
+          var K = ks[n];
+          s += wts[n] * Math.exp(K.c + (K.a[0] - 1) * l0 + (K.a[1] - 1) * l1 + (K.a[2] - 1) * l2);
+        }
+        field[idx] = s;
+        if (s > max) max = s;
       }
+    }
+    for (k = 0; k < rw * rh; k++) {
+      var p = k * 4;
+      if (field[k] < 0) { d[p + 3] = 0; continue; }
+      field[k] /= max;
+      var c = color(Math.pow(field[k], 0.6));
+      d[p] = c[0]; d[p + 1] = c[1]; d[p + 2] = c[2]; d[p + 3] = 255;
     }
     rctx.putImageData(img, 0, 0);
   }
 
-  // Marching squares over the density field, one path per contour level.
+  // Marching squares over the normalised density, dashed like the thesis figure.
   function contours() {
     var sx = W / rw, sy = H / rh;
     ctx.lineWidth = 0.9;
+    ctx.setLineDash([3, 3]);
     LEVELS.forEach(function (L, li) {
-      ctx.strokeStyle = li > 3 ? 'rgba(90, 30, 10, 0.32)' : 'rgba(20, 60, 58, 0.30)';
+      ctx.strokeStyle = li > 2 ? 'rgba(110, 40, 15, 0.45)' : 'rgba(20, 70, 66, 0.4)';
       ctx.beginPath();
       for (var j = 0; j < rh - 1; j++) {
         for (var i = 0; i < rw - 1; i++) {
@@ -111,73 +132,57 @@
       }
       ctx.stroke();
     });
+    ctx.setLineDash([]);
   }
 
   function tri() {
     ctx.beginPath(); ctx.moveTo(V[0][0], V[0][1]); ctx.lineTo(V[1][0], V[1][1]); ctx.lineTo(V[2][0], V[2][1]); ctx.closePath();
-  }
-  function star(x, y, R, r) {
-    ctx.beginPath();
-    for (var i = 0; i < 10; i++) {
-      var ang = -Math.PI / 2 + i * Math.PI / 5, rad = i % 2 ? r : R;
-      ctx.lineTo(x + rad * Math.cos(ang), y + rad * Math.sin(ang));
-    }
-    ctx.closePath();
   }
   function label(text, x, y, align) {
     ctx.textAlign = align;
     ctx.lineWidth = 4; ctx.strokeStyle = 'rgba(255,255,255,0.9)'; ctx.strokeText(text, x, y);
     ctx.fillStyle = '#1d3f3c'; ctx.fillText(text, x, y);
   }
+  function circle(b, r, fill, stroke, lw) {
+    var p = toXY(b);
+    ctx.beginPath(); ctx.arc(p[0], p[1], r, 0, 2 * Math.PI);
+    if (fill) { ctx.fillStyle = fill; ctx.fill(); }
+    ctx.lineWidth = lw; ctx.strokeStyle = stroke; ctx.stroke();
+  }
 
   function draw() {
-    var a = alpha(), key = a.map(function (x) { return x.toFixed(4); }).join();
+    var key = docs.length + ':' + ghost.map(function (x) { return x.toFixed(4); }).join();
     if (!dirty && key === last) return;
     dirty = false; last = key;
-    computeField(a);
+    computeField();
     ctx.clearRect(0, 0, W, H);
     ctx.save(); tri(); ctx.clip();
     ctx.imageSmoothingEnabled = true;
     ctx.drawImage(raster, 0, 0, W, H);
     contours();
     ctx.restore();
-    tri(); ctx.strokeStyle = '#1f5e63'; ctx.lineWidth = 1.6; ctx.stroke();
+    tri(); ctx.strokeStyle = '#222'; ctx.lineWidth = 1.2; ctx.stroke();
+
+    ctx.font = '18px "Source Serif 4", Georgia, serif';
+    label('A', V[0][0], V[0][1] - 10, 'center');
+    label('B', V[1][0] - 8, V[1][1] + 20, 'center');
+    label('C', V[2][0] + 8, V[2][1] + 20, 'center');
+
+    docs.forEach(function (d) { circle(d, 4.5, 'rgba(255,255,255,0.95)', '#222', 1.3); });
+    circle(ghost, 5.5, 'rgba(255,255,255,0.6)', '#1f6f6a', 1.6);
 
     ctx.font = 'italic 17px "Source Serif 4", Georgia, serif';
-    label('w₁', V[0][0], V[0][1] - 10, 'center');
-    label('w₂', V[1][0] - 6, V[1][1] + 22, 'center');
-    label('w₃', V[2][0] + 6, V[2][1] + 22, 'center');
-
-    docs.forEach(function (d) {
-      var p = toXY(d);
-      ctx.beginPath(); ctx.arc(p[0], p[1], 4, 0, 2 * Math.PI);
-      ctx.fillStyle = '#1d3f3c'; ctx.fill();
-      ctx.lineWidth = 1.5; ctx.strokeStyle = '#fff'; ctx.stroke();
-    });
-
-    var m = toXY(modeOf(a));
-    star(m[0], m[1], 12, 5);
-    ctx.fillStyle = '#fff'; ctx.fill();
-    ctx.lineWidth = 1.3; ctx.strokeStyle = '#1d3f3c'; ctx.stroke();
-    ctx.font = 'italic 16px "Source Serif 4", Georgia, serif';
-    label('p(w | R)', Math.min(m[0] + 16, W - 70), m[1] - 12, 'left');
-
-    if (docs.length) {
-      ctx.font = '12px "Noto Sans", sans-serif';
-      ctx.fillStyle = '#5c6266'; ctx.textAlign = 'left';
-      ctx.fillText(docs.length + ' feedback doc' + (docs.length > 1 ? 's' : ''), 4, 16);
-      ctx.fillText('double-click to reset', 4, 33);
-    }
+    label('p(du)', (V[0][0] + V[2][0]) / 2 + 16, (V[0][1] + V[2][1]) / 2, 'left');
   }
 
   function tick(now) {
     if (!pointer) {
-      var s = (now - t0) / 1000, c = 0.2;
-      var b = [1 / 3 + c * Math.sin(s * 0.27), 1 / 3 + c * Math.sin(s * 0.19 + 2.1), 0];
+      var s = (now - t0) / 1000, c = 0.24;
+      var b = [1 / 3 + c * Math.sin(s * 0.29), 1 / 3 + c * Math.sin(s * 0.21 + 2.1), 0];
       b[2] = 1 - b[0] - b[1];
-      target = clampB(b, 0.08);
+      target = clampB(b, 0.06);
     }
-    for (var i = 0; i < 3; i++) mean[i] += (target[i] - mean[i]) * 0.08;
+    for (var i = 0; i < 3; i++) ghost[i] += (target[i] - ghost[i]) * 0.1;
     draw();
     if (running) raf = requestAnimationFrame(tick);
   }
@@ -186,23 +191,27 @@
     var r = canvas.getBoundingClientRect();
     return bary(e.clientX - r.left, e.clientY - r.top);
   }
-  function inside(b) { return b[0] > -0.05 && b[1] > -0.05 && b[2] > -0.05; }
+  function inside(b) { return b[0] > -0.04 && b[1] > -0.04 && b[2] > -0.04; }
 
   canvas.addEventListener('pointermove', function (e) {
     var b = at(e);
     if (!inside(b)) { pointer = false; return; }
-    pointer = true; target = clampB(b, 0.04);
-    if (reduce) { mean = target.slice(); draw(); }
+    pointer = true; target = clampB(b, 0.03);
+    if (reduce) { ghost = target.slice(); draw(); }
   });
   canvas.addEventListener('pointerleave', function () { pointer = false; t0 = performance.now(); });
   canvas.addEventListener('click', function (e) {
     var b = at(e);
     if (!inside(b)) return;
-    docs.push(clampB(b, 0.02));
-    if (docs.length > MAXDOCS) docs.shift();
+    docs.push(clampB(b, 0.03));
+    if (docs.length > MAXDOCS) docs.splice(START.length, 1);
     dirty = true; draw();
   });
-  canvas.addEventListener('dblclick', function (e) { e.preventDefault(); docs = []; dirty = true; draw(); });
+  canvas.addEventListener('dblclick', function (e) {
+    e.preventDefault();
+    docs = START.map(function (d) { return d.slice(); });
+    dirty = true; draw();
+  });
   window.addEventListener('resize', function () { size(); draw(); });
 
   size();

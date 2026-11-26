@@ -239,14 +239,38 @@ strong {
   border-bottom: 1px solid var(--rule);
 }
 
+.home-hero {
+  display: flex;
+  flex-direction: column;
+  min-height: calc(100vh - 3.5rem);
+}
+
 .hero-figure {
-  margin: 1.75rem 0 0;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  margin: 1.25rem 0 0;
+}
+
+.scroll-cue,
+.scroll-cue:visited {
+  align-self: center;
+  margin-top: 0.75rem;
+  color: var(--muted);
+  font-size: 0.88rem;
+  text-decoration: none;
+}
+
+.scroll-cue:hover {
+  color: var(--accent);
 }
 
 #simplex {
   display: block;
   width: 100%;
-  aspect-ratio: 1 / 0.88;
+  flex: 1;
+  min-height: 22rem;
+  max-height: 44rem;
   cursor: crosshair;
   touch-action: pan-y;
 }
@@ -861,7 +885,13 @@ strong {
     grid-template-columns: 1fr;
   }
 
+  .home-hero {
+    min-height: 0;
+  }
+
   #simplex {
+    flex: none;
+    min-height: 0;
     aspect-ratio: 1 / 0.95;
   }
 

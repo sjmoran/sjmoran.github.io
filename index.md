@@ -10,9 +10,10 @@ title: Sean Moran
       <p class="lede">I build AI systems for a living. In my spare time I pick a question I can’t stop thinking about, build the smallest thing that answers it, and write up what I find.</p>
 </div>
     <figure class="hero-figure">
-      <canvas id="simplex" aria-label="Interactive Dirichlet distribution over three words. Its peak, the relevance model p(w|R), follows the pointer; clicks add feedback documents." role="img"></canvas>
-      <figcaption>A relevance model <em>p(w|R)</em> is a point on this triangle, and a Dirichlet says how sure we are of it. Move to set the prior; click to add feedback documents and watch the posterior sharpen.</figcaption>
+      <canvas id="simplex" aria-label="Interactive version of Lavrenko’s Dirichlet-kernel density on a three-word simplex. A new document follows the pointer; clicking adds it." role="img"></canvas>
+      <figcaption>After Lavrenko’s <em>A Generative Theory of Relevance</em>, Figure 4.8: each training document induces a Dirichlet bump on the simplex A–B–C, and the bumps overlap into the generative density <em>p(du)</em>. Move to place a new document; click to add it; double-click to reset.</figcaption>
     </figure>
+    <a class="scroll-cue" href="#recently">Recently ↓</a>
   </header>
 
   <section class="content-section" aria-labelledby="recently">
