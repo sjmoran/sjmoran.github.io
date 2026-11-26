@@ -119,7 +119,7 @@ title: Sean Moran
     <h2 id="worked">Where I’ve worked</h2>
     <ol class="timeline">
       <li><span class="when">2025–now</span><div><strong>Vergence AI</strong>, the Palantir–TWG Global joint venture. Head of AI (UK). My team builds AI systems with clients and ships them to production.</div></li>
-      <li><span class="when">2020–2025</span><div><strong>J.P. Morgan.</strong> Co-founded the CTO Applied Research group, then founded a production-AI team that grew to 45+ people.</div></li>
+      <li><span class="when">2020–2025</span><div><strong>J.P. Morgan.</strong> Co-founded the CTO Applied Research group, now <a href="https://www.jpmorganchase.com/about/technology/research/applied-research" target="_blank" rel="noopener">Global Technology Applied Research</a>, then founded a production-AI team that grew to 45+ people.</div></li>
       <li><span class="when">2018–2020</span><div><strong>Huawei</strong>, London research lab. Image-enhancement models for phones, including <a href="https://arxiv.org/abs/2003.13985" target="_blank" rel="noopener">DeepLPF</a> (CVPR 2020).</div></li>
       <li><span class="when">2016–2018</span><div><strong>Synpromics.</strong> First ML hire at a gene-therapy startup, later acquired by AskBio.</div></li>
       <li><span class="when">2010–2016</span><div><strong>University of Edinburgh.</strong> Research contracts and a PhD in AI with Victor Lavrenko, on learning to hash for large-scale retrieval.</div></li>
