@@ -10,8 +10,8 @@ title: Sean Moran
       <p class="lede">I build AI systems for a living. In my spare time I pick a question I can’t stop thinking about, build the smallest thing that answers it, and write up what I find.</p>
 </div>
     <figure class="hero-figure">
-      <canvas id="simplex" aria-label="Interactive version of Lavrenko’s Dirichlet-kernel density on a three-word simplex. A new document follows the pointer; clicking adds it." role="img"></canvas>
-      <figcaption>After Lavrenko’s <em>A Generative Theory of Relevance</em>, Figure 4.8: each training document induces a Dirichlet bump on the simplex A–B–C, and the bumps overlap into the generative density <em>p(du)</em>. Move to place a new document; click to add it; double-click to reset.</figcaption>
+      <canvas id="simplex" aria-label="Interactive triangle: each corner is a word, documents are points, and overlapping hills show which word mixes are likely. A new document follows the pointer; clicking adds it." role="img"></canvas>
+      <figcaption>Each corner is a word, and every point inside the triangle is a mix of the three. Each document sits at its own word mix and spreads a little probability around itself; where the hills overlap is the kind of text the collection makes likely. Move to try a new document, click to add it, double-click to reset.</figcaption>
       <a class="scroll-cue" href="#recently">Recently ↓</a>
     </figure>
   </header>
