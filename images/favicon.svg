@@ -1,12 +1,13 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
   <defs>
-    <linearGradient id="g" x1="0" y1="0" x2="64" y2="64" gradientUnits="userSpaceOnUse">
-      <stop offset="0" stop-color="#2952ff"/>
-      <stop offset="1" stop-color="#7c93ff"/>
-    </linearGradient>
+    <radialGradient id="g" cx="32" cy="40" r="26" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#e86a2c"/>
+      <stop offset="0.35" stop-color="#f4a14a"/>
+      <stop offset="0.6" stop-color="#f0d27a"/>
+      <stop offset="0.85" stop-color="#7cc3a4"/>
+      <stop offset="1" stop-color="#3e9e98"/>
+    </radialGradient>
   </defs>
-  <rect width="64" height="64" rx="14" fill="url(#g)"/>
-  <text x="50%" y="54%" text-anchor="middle" dominant-baseline="middle"
-        font-family="Inter, -apple-system, Helvetica, Arial, sans-serif"
-        font-weight="800" font-size="34" fill="#fff">SM</text>
+  <polygon points="32,5 61,57 3,57" fill="url(#g)" stroke="#2d5f5b" stroke-width="2.5" stroke-linejoin="round"/>
+  <polygon points="32,31 34.4,37.6 41.5,37.8 35.9,42.1 37.9,48.9 32,44.9 26.1,48.9 28.1,42.1 22.5,37.8 29.6,37.6" fill="#fff"/>
 </svg>
