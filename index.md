@@ -6,12 +6,23 @@ title: Sean Moran
 <article class="home-page">
   <h1 class="visually-hidden">Sean Moran</h1>
   <div class="intro">
-    <p>I am an AI researcher and engineer based in London. I work on information retrieval, code intelligence, reliable AI systems, and machine learning for settings where privacy, auditability, and operational constraints matter.</p>
+    <p>I lead forward-deployed AI engineering in London. As Managing Director and Head of AI (UK) at Vergence AI, the Palantir–TWG Global joint venture, I hired and run a team that works on site with clients in insurance, financial services, healthcare and sport, taking LLM and ML systems from prototype to production.</p>
 
-    <p>I previously led an applied AI research group at <a href="https://www.jpmorganchase.com/" target="_blank" rel="noopener">JPMorgan Chase</a>. Before that, I was a senior research scientist at Huawei’s research centre in London. I received my PhD from the <a href="https://www.ed.ac.uk/" target="_blank" rel="noopener">University of Edinburgh</a>, where I was a member of <a href="https://edinburghnlp.inf.ed.ac.uk/" target="_blank" rel="noopener">EdinburghNLP</a>.</p>
+    <p>Coding agents write most of our code. The engineers own the specs, the evaluation sets that gate each release, and the relationship with the people who own the decision. I still write production code, including the extraction pipeline, the evaluation harness and shared agent tooling.</p>
 
-    <p>My work has resulted in more than 40 peer-reviewed papers and 25 granted US patents. The complete records are on <a href="{{ site.scholar_url }}" target="_blank" rel="noopener">Google Scholar</a> and <a href="https://patents.google.com/?inventor=Sean+Moran" target="_blank" rel="noopener">Google Patents</a>.</p>
+    <p>Before that I spent five years at <a href="https://www.jpmorganchase.com/" target="_blank" rel="noopener">J.P. Morgan</a>, where I co-founded the CTO Applied Research group and founded a production-AI team that grew to 45+ people, shipping LLM and ML systems through model-risk, security and audit review. Earlier: senior research scientist at Huawei's London lab, first ML hire at a gene-therapy startup, and software engineer on Deutsche Bank's commodities desk. PhD from the <a href="https://www.ed.ac.uk/" target="_blank" rel="noopener">University of Edinburgh</a> (<a href="https://edinburghnlp.inf.ed.ac.uk/" target="_blank" rel="noopener">EdinburghNLP</a>); 40+ papers and 20+ granted US patents (<a href="{{ site.scholar_url }}" target="_blank" rel="noopener">Scholar</a>, <a href="https://patents.google.com/?inventor=Sean+Moran" target="_blank" rel="noopener">Patents</a>).</p>
   </div>
+
+  <section class="content-section" aria-labelledby="deployed-work">
+    <h2 id="deployed-work">Deployed work</h2>
+    <ul class="plain-list">
+      <li><strong>Vergence AI, 2025–present.</strong> Dozens of client projects at once, several in business production: fraud detection, pricing, customer analytics and document-heavy workflows. We build on Palantir Foundry/AIP with its Ontology, so the agents act on the client's operational records. Every engagement agrees evaluation gates and a human escalation path before production.</li>
+      <li><strong>Multi-agent document processing.</strong> Designed the decomposition (extraction, tool contracts, human review, evaluation gates), shipped an MVP and a paid second phase, then handed the system to the client's own team.</li>
+      <li><strong>Pre-sales.</strong> Ran discovery workshops and built working prototypes in front of prospective clients; these became paid engagements.</li>
+      <li><strong>J.P. Morgan, 2020–2025.</strong> Shipped LLM and ML systems used across the bank, including an assistant with 50k+ users, incident analysis and vulnerability triage. Set the release gates a model or agent had to pass: offline quality, usefulness judged by domain experts, latency, controls and post-launch outcomes.</li>
+    </ul>
+    <p class="more-link">Client names withheld. <a href="{{ site.cv_pdf }}">CV (PDF)</a></p>
+  </section>
 
   <section class="content-section" aria-labelledby="selected-research">
     <h2 id="selected-research">Selected research</h2>
@@ -23,10 +34,6 @@ title: Sean Moran
         <p class="entry-links"><a href="https://github.com/jpmorganchase/codequest" target="_blank" rel="noopener">code</a></p>
       </li>
 
-      <li class="selected-entry">
-        <h3><a href="https://arxiv.org/abs/2311.10448" target="_blank" rel="noopener">DeepClean: Machine Unlearning by Resetting Privacy-Sensitive Weights</a></h3>
-        <p>J. Shi, N. Ghalyan, K. Gourgoulias, J. Buford, S. Moran. <em>ECCV Workshop on Unlearning, 2024.</em></p>
-      </li>
 
       <li class="selected-entry">
         <h3><a href="https://arxiv.org/abs/2304.01238" target="_blank" rel="noopener">Spam-T5: Benchmarking LLMs for Few-Shot Email Spam Detection</a></h3>
@@ -45,11 +52,6 @@ title: Sean Moran
         <p class="entry-links"><a href="https://github.com/sjmoran/deep_local_parametric_filters" target="_blank" rel="noopener">code</a><a href="https://www.youtube.com/watch?v=Sxach3FM6FY" target="_blank" rel="noopener">video</a></p>
       </li>
 
-      <li class="selected-entry">
-        <h3><a href="https://arxiv.org/abs/2007.09187" target="_blank" rel="noopener">Low-Light Video Enhancement Using Synthetic Data with Intermediate Domain Mapping</a></h3>
-        <p>D. Triantafyllidou, S. Moran, S. McDonagh, S. Parisot, G. Slabaugh. <em>ECCV, 2020.</em></p>
-        <p class="entry-links"><a href="https://github.com/sjmoran/SIDGAN" target="_blank" rel="noopener">code</a><a href="https://youtu.be/-MwiYBXdtD4" target="_blank" rel="noopener">video</a></p>
-      </li>
 
       <li class="selected-entry">
         <h3><a href="/pdfs/acmicmr2014.pdf">Sparse Kernel Learning for Image Annotation</a></h3>
@@ -57,11 +59,6 @@ title: Sean Moran
         <p class="entry-links"><a href="https://github.com/sjmoran/SKLCRM" target="_blank" rel="noopener">code</a></p>
       </li>
 
-      <li class="selected-entry">
-        <h3><a href="/pdfs/vbq_acl.pdf">Variable Bit Quantisation for LSH</a></h3>
-        <p>S. Moran, V. Lavrenko, M. Osborne. <em>ACL, 2013.</em></p>
-        <p class="entry-links"><a href="https://github.com/sjmoran/npq" target="_blank" rel="noopener">code</a></p>
-      </li>
     </ol>
 
     <p class="more-link"><a href="/publications/">All publications</a></p>
@@ -81,6 +78,7 @@ title: Sean Moran
   <section class="content-section" aria-labelledby="recent-writing">
     <h2 id="recent-writing">Recent writing</h2>
     <ul class="plain-list">
+      <li><a href="https://aiadvances.org/what-anthropics-workforce-data-says-about-ai-at-work-67103329c989" target="_blank" rel="noopener">What Anthropic's Workforce Data Says About AI at Work</a></li>
       <li><a href="https://medium.com/@sean.j.moran/ai-has-made-research-cheap-understanding-is-still-expensive-ae36da3f5205" target="_blank" rel="noopener">AI Has Made Research Cheap. Understanding Is Still Expensive.</a></li>
       <li><a href="https://medium.com/@sean.j.moran/the-retrieval-mistake-most-rag-teams-havent-understood-8b864c034ee7" target="_blank" rel="noopener">Why Some RAG Queries Cannot Be Solved by Vector Search Alone</a></li>
       <li><a href="https://medium.com/@sean.j.moran/ai-agents-need-more-than-job-orchestration-43e493bb4749" target="_blank" rel="noopener">AI Agents Need More Than Job Orchestration</a></li>
