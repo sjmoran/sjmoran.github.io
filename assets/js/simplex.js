@@ -24,7 +24,7 @@
     W = r.width; H = r.height;
     canvas.width = Math.round(W * dpr); canvas.height = Math.round(H * dpr);
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-    var side = Math.min(W * 0.9, (H - 56) / (Math.sqrt(3) / 2));
+    var side = Math.min(W * 0.94, (H - 50) / (Math.sqrt(3) / 2));
     var th = side * Math.sqrt(3) / 2, top = (H - th) / 2 - 2;
     V = [[W / 2, top], [W / 2 - side / 2, top + th], [W / 2 + side / 2, top + th]];
     rw = GRID; rh = Math.round(GRID * H / W);
