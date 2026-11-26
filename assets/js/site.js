@@ -59,7 +59,7 @@
   });
 })();
 
-// Shuffle the homepage image grids on every visit (Fisher-Yates).
+// Shuffle the homepage card pools on every visit (Fisher-Yates); CSS shows the first N.
 document.querySelectorAll('.card-grid').forEach(function (grid) {
   var items = Array.prototype.slice.call(grid.children);
   for (var i = items.length - 1; i > 0; i--) {

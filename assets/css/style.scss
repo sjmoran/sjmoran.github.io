@@ -380,6 +380,12 @@ strong {
   padding: 0;
 }
 
+/* Pools: the shuffle in site.js reorders cards; only the first N show. */
+.card-grid[data-show="4"] > .card:nth-child(n+5),
+.card-grid[data-show="3"] > .card:nth-child(n+4) {
+  display: none;
+}
+
 .card-img {
   display: block;
   aspect-ratio: 3 / 2;

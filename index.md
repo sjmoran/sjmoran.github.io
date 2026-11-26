@@ -11,11 +11,11 @@ title: Sean Moran
 
   <section class="content-section" aria-labelledby="recently">
     <h2 id="recently">Recently</h2>
-    <ul class="card-grid">
+    <ul class="card-grid" data-show="4">
       <li class="card">
-        <a class="card-img" href="https://towardsdatascience.com/timestral-t0-tabby-and-morpheus-20-compared-on-gift-eval/" target="_blank" rel="noopener" aria-hidden="true" tabindex="-1"><img src="/img/writing/tsfm-four-way.jpg" alt="" loading="lazy"></a>
-        <h3><a href="https://towardsdatascience.com/timestral-t0-tabby-and-morpheus-20-compared-on-gift-eval/" target="_blank" rel="noopener">Timestral, t0, Tabby, and Morpheus-2.0 compared on GIFT-Eval</a></h3>
-        <p>I re-ran three open time-series foundation models and reproduced their published scores. All four models scale, patch and predict quantiles; the real split is how series share information. <a href="https://github.com/sjmoran/tsfm-gifteval-rerun" target="_blank" rel="noopener">Code</a>.</p>
+        <a class="card-img" href="https://aiadvances.org/what-anthropics-workforce-data-says-about-ai-at-work-67103329c989" target="_blank" rel="noopener" aria-hidden="true" tabindex="-1"><img src="/img/writing/anthropic-employment.jpg" alt="" loading="lazy"></a>
+        <h3><a href="https://aiadvances.org/what-anthropics-workforce-data-says-about-ai-at-work-67103329c989" target="_blank" rel="noopener">What Anthropic’s workforce data says about AI at work</a></h3>
+        <p>Junior technical hires fell from 27% to 9% while the company tripled, and agents spend about 80% of interactive sessions waiting for a person.</p>
       </li>
       <li class="card">
         <a class="card-img" href="https://medium.com/@sean.j.moran/finding-the-riemann-zeros-in-a-fourier-transform-of-the-primes-11a1cb7fae10" target="_blank" rel="noopener" aria-hidden="true" tabindex="-1"><img src="/img/writing/riemann-zeros-fft.jpg" alt="" loading="lazy"></a>
@@ -28,9 +28,49 @@ title: Sean Moran
         <p>Three ways a player might beat it, tested on 32 years of draws: the balls look fair, avoiding popular numbers is worth a third of a penny per pound, and about 3 in 10 Must Be Won draws since 2018 were worth slightly more than a ticket.</p>
       </li>
       <li class="card">
-        <a class="card-img" href="https://aiadvances.org/what-anthropics-workforce-data-says-about-ai-at-work-67103329c989" target="_blank" rel="noopener" aria-hidden="true" tabindex="-1"><img src="/img/writing/anthropic-employment.jpg" alt="" loading="lazy"></a>
-        <h3><a href="https://aiadvances.org/what-anthropics-workforce-data-says-about-ai-at-work-67103329c989" target="_blank" rel="noopener">What Anthropic’s workforce data says about AI at work</a></h3>
-        <p>Junior technical hires fell from 27% to 9% while the company tripled, and agents spend about 80% of interactive sessions waiting for a person.</p>
+        <a class="card-img" href="https://towardsdatascience.com/timestral-t0-tabby-and-morpheus-20-compared-on-gift-eval/" target="_blank" rel="noopener" aria-hidden="true" tabindex="-1"><img src="/img/writing/tsfm-four-way.jpg" alt="" loading="lazy"></a>
+        <h3><a href="https://towardsdatascience.com/timestral-t0-tabby-and-morpheus-20-compared-on-gift-eval/" target="_blank" rel="noopener">Timestral, t0, Tabby, and Morpheus-2.0 compared on GIFT-Eval</a></h3>
+        <p>I re-ran three open time-series foundation models and reproduced their published scores. All four models scale, patch and predict quantiles; the real split is how series share information. <a href="https://github.com/sjmoran/tsfm-gifteval-rerun" target="_blank" rel="noopener">Code</a>.</p>
+      </li>
+      <li class="card">
+        <a class="card-img" href="https://towardsdatascience.com/what-openais-719-math-papers-mean-for-data-science/" target="_blank" rel="noopener" aria-hidden="true" tabindex="-1"><img src="/img/writing/openai-719-maths-papers.jpg" alt="" loading="lazy"></a>
+        <h3><a href="https://towardsdatascience.com/what-openais-719-math-papers-mean-for-data-science/" target="_blank" rel="noopener">What OpenAI’s 719 Math Papers Mean for Data Science</a></h3>
+        <p>OpenAI released 719 machine-generated math papers in 372 groups of related results.</p>
+      </li>
+      <li class="card">
+        <a class="card-img" href="https://towardsdatascience.com/how-a-frontier-model-gets-built-read-from-the-kimi-k3-report/" target="_blank" rel="noopener" aria-hidden="true" tabindex="-1"><img src="/img/writing/kimi-k3-report.jpg" alt="" loading="lazy"></a>
+        <h3><a href="https://towardsdatascience.com/how-a-frontier-model-gets-built-read-from-the-kimi-k3-report/" target="_blank" rel="noopener">How a Frontier Model Gets Built, Read from the Kimi K3 Report</a></h3>
+        <p>Moonshot's Kimi K3 is a 2.8-trillion-parameter open-weight model that ranks near the top of third-party leaderboards — yet the report shows most of the work isn't the architecture.</p>
+      </li>
+      <li class="card">
+        <a class="card-img" href="https://towardsdatascience.com/i-built-a-tiny-computer-inside-a-transformer/" target="_blank" rel="noopener" aria-hidden="true" tabindex="-1"><img src="/img/writing/tiny-computer-transformer.jpg" alt="" loading="lazy"></a>
+        <h3><a href="https://towardsdatascience.com/i-built-a-tiny-computer-inside-a-transformer/" target="_blank" rel="noopener">I Built a Tiny Computer Inside a Transformer</a></h3>
+        <p>The computational "circuits" that emerge inside transformer attention layers, with a hand-traced example of a model reasoning across several steps.</p>
+      </li>
+      <li class="card">
+        <a class="card-img" href="https://towardsdatascience.com/how-relevance-models-foreshadowed-transformers-for-nlp/" target="_blank" rel="noopener" aria-hidden="true" tabindex="-1"><img src="/img/writing/relevance-models.jpg" alt="" loading="lazy"></a>
+        <h3><a href="https://towardsdatascience.com/how-relevance-models-foreshadowed-transformers-for-nlp/" target="_blank" rel="noopener">How Relevance Models Foreshadowed Transformers for NLP</a></h3>
+        <p>Victor Lavrenko's relevance models, traced through cross-encoder reranking to modern attention, drawing out the continuities between classical IR and the transformer.</p>
+      </li>
+      <li class="card">
+        <a class="card-img" href="https://medium.com/@sean.j.moran/the-retrieval-mistake-most-rag-teams-havent-understood-8b864c034ee7" target="_blank" rel="noopener" aria-hidden="true" tabindex="-1"><img src="/img/writing/retrieval-mistake.jpg" alt="" loading="lazy"></a>
+        <h3><a href="https://medium.com/@sean.j.moran/the-retrieval-mistake-most-rag-teams-havent-understood-8b864c034ee7" target="_blank" rel="noopener">Why Some RAG Queries Cannot Be Solved by Vector Search Alone</a></h3>
+        <p>Some production RAG queries have answers that dense similarity cannot reach at all.</p>
+      </li>
+      <li class="card">
+        <a class="card-img" href="https://towardsdatascience.com/why-your-multi-agent-system-is-failing-escaping-the-17x-error-trap-of-the-bag-of-agents/" target="_blank" rel="noopener" aria-hidden="true" tabindex="-1"><img src="/img/writing/multi-agent-failing.jpg" alt="" loading="lazy"></a>
+        <h3><a href="https://towardsdatascience.com/why-your-multi-agent-system-is-failing-escaping-the-17x-error-trap-of-the-bag-of-agents/" target="_blank" rel="noopener">The 17× Error Trap in Bag-of-Agents Architectures</a></h3>
+        <p>Errors compound 17× in "bag-of-agents" architectures.</p>
+      </li>
+      <li class="card">
+        <a class="card-img" href="https://medium.com/@sean.j.moran/llm-agents-are-still-in-the-age-of-phone-whistling-4fc2b4758477" target="_blank" rel="noopener" aria-hidden="true" tabindex="-1"><img src="/img/writing/phone-whistling.jpg" alt="" loading="lazy"></a>
+        <h3><a href="https://medium.com/@sean.j.moran/llm-agents-are-still-in-the-age-of-phone-whistling-4fc2b4758477" target="_blank" rel="noopener">Prompt Injection Is an In-Band Signalling Problem</a></h3>
+        <p>A false alarm in Claude Code, a 1960s phone whistle, and why the agent harness, not the model, has to keep instructions apart from untrusted content.</p>
+      </li>
+      <li class="card">
+        <a class="card-img" href="https://medium.com/@sean.j.moran/the-twelve-practical-patterns-i-wish-id-known-when-i-started-tinkering-with-forecasting-models-e88ae609ab27" target="_blank" rel="noopener" aria-hidden="true" tabindex="-1"><img src="/img/writing/twelve-patterns.jpg" alt="" loading="lazy"></a>
+        <h3><a href="https://medium.com/@sean.j.moran/the-twelve-practical-patterns-i-wish-id-known-when-i-started-tinkering-with-forecasting-models-e88ae609ab27" target="_blank" rel="noopener">Twelve Reliability Patterns From a Weekend Forecasting Project</a></h3>
+        <p>Practical lessons from time-series forecasting: split design, leakage, calibrated baselines, drift detection, and the recurring failure modes of naive models.</p>
       </li>
     </ul>
     <p class="more-link"><a href="/writing/">All writing</a></p>
@@ -38,7 +78,7 @@ title: Sean Moran
 
   <section class="content-section" aria-labelledby="built">
     <h2 id="built">Things I’ve built</h2>
-    <ul class="card-grid">
+    <ul class="card-grid" data-show="3">
       <li class="card">
         <a class="card-img" href="https://sjmoran.github.io/bitbudget/" target="_blank" rel="noopener" aria-hidden="true" tabindex="-1"><img src="/img/projects/bitbudget.jpg" alt="" loading="lazy"></a>
         <h3><a href="https://sjmoran.github.io/bitbudget/" target="_blank" rel="noopener">BitBudget</a></h3>
@@ -53,6 +93,21 @@ title: Sean Moran
         <a class="card-img" href="https://github.com/sjmoran/claude-academic-prose" target="_blank" rel="noopener" aria-hidden="true" tabindex="-1"><img src="/img/projects/claude-academic-prose.jpg" alt="" loading="lazy"></a>
         <h3><a href="https://github.com/sjmoran/claude-academic-prose" target="_blank" rel="noopener">claude-academic-prose</a></h3>
         <p>A Claude Code skill that strips hype from scientific writing and ties each claim to its evidence.</p>
+      </li>
+      <li class="card">
+        <a class="card-img" href="https://github.com/sjmoran/deep_local_parametric_filters" target="_blank" rel="noopener" aria-hidden="true" tabindex="-1"><img src="/img/projects/deeplpf.jpg" alt="" loading="lazy"></a>
+        <h3><a href="https://github.com/sjmoran/deep_local_parametric_filters" target="_blank" rel="noopener">DeepLPF</a></h3>
+        <p>Image enhancement with learned graduated, elliptical and polynomial filters, so you can see what the network chose to do. CVPR 2020.</p>
+      </li>
+      <li class="card">
+        <a class="card-img" href="https://github.com/jpmorganchase/codequest" target="_blank" rel="noopener" aria-hidden="true" tabindex="-1"><img src="/img/projects/codequest.jpg" alt="" loading="lazy"></a>
+        <h3><a href="https://github.com/jpmorganchase/codequest" target="_blank" rel="noopener">CodeQUEST</a></h3>
+        <p>An LLM loop that evaluates code quality and then improves the code. ISSREW 2025.</p>
+      </li>
+      <li class="card">
+        <a class="card-img" href="https://huggingface.co/datasets/sjmoran/arxiv-tagged-papers" target="_blank" rel="noopener" aria-hidden="true" tabindex="-1"><img src="/img/projects/arxiv.jpg" alt="" loading="lazy"></a>
+        <h3><a href="https://huggingface.co/datasets/sjmoran/arxiv-tagged-papers" target="_blank" rel="noopener">arxiv-tagged-papers</a></h3>
+        <p>Semantic keyword tags for 3M+ arXiv papers, as an open dataset.</p>
       </li>
     </ul>
     <p class="more-link"><a href="/talks/">More code, datasets and talks</a></p>
