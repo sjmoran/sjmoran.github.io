@@ -58,6 +58,7 @@
       <a class="identity" href="/">Sean<br>Moran</a>
       <p class="role">Head of AI (UK)<br>Vergence AI</p>
       <p class="location">London, UK</p>
+      <p class="quick-links"><a href="{{ site.cv_pdf }}">CV</a><a href="{{ site.linkedin_url }}" target="_blank" rel="noopener">LinkedIn</a></p>
 
       <nav class="site-nav" aria-label="Primary navigation">
         <a href="/"{% if page.url == '/' %} aria-current="page"{% endif %}>Home</a>
@@ -71,8 +72,6 @@
       <div class="profile-links">
         <a href="{{ site.scholar_url }}" target="_blank" rel="noopener">Google Scholar</a>
         <a href="https://github.com/{{ site.github_username }}" target="_blank" rel="noopener">GitHub</a>
-        <a href="{{ site.linkedin_url }}" target="_blank" rel="noopener">LinkedIn</a>
-        <a href="{{ site.cv_pdf }}">CV</a>
         {% include email.html %}
       </div>
     </aside>
