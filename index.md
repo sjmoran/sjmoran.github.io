@@ -4,7 +4,15 @@ title: Sean Moran
 ---
 
 <article class="home-page">
-  <h1 class="visually-hidden">Sean Moran</h1>
+  <header class="home-hero">
+    <h1>I build AI systems with clients and ship them to production.</h1>
+    <dl class="facts">
+      <div><dt>45+</dt><dd>people in the production-AI team I founded at J.P. Morgan</dd></div>
+      <div><dt>50k+</dt><dd>users of an AI assistant my team shipped inside the bank</dd></div>
+      <div><dt>20+</dt><dd>granted US patents</dd></div>
+      <div><dt>PhD</dt><dd>AI, University of Edinburgh</dd></div>
+    </dl>
+  </header>
   <div class="intro">
     <p>I lead forward-deployed AI engineering in London. As Managing Director and Head of AI (UK) at Vergence AI, the Palantir–TWG Global joint venture, I hired and run a team that works on site with clients in insurance, financial services, healthcare and sport, taking LLM and ML systems from prototype to production.</p>
 
