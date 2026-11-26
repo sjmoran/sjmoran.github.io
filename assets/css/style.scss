@@ -287,15 +287,15 @@ strong {
   display: block;
   width: 100%;
   aspect-ratio: 1 / 0.9;
-  max-width: var(--hero-w, 24.5rem);
+  max-width: var(--hero-w, 24rem);
   margin: 0 auto;
   cursor: crosshair;
   touch-action: pan-y;
 }
 
 .hero-figure figcaption {
-  max-width: 34rem;
-  margin: 0.4rem auto 0;
+  max-width: 39rem;
+  margin: 0.3rem auto 0;
   color: var(--muted);
   font-size: 0.88rem;
   line-height: 1.5;

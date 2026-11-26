@@ -11,7 +11,7 @@ title: Sean Moran
 </div>
     <figure class="hero-figure">
       <canvas id="simplex" aria-label="Interactive triangle: each corner is a word, documents are points, and overlapping hills show which word mixes are likely. A new document follows the pointer; clicking adds it." role="img"></canvas>
-      <figcaption>Each corner is a word, and every point inside the triangle is a mix of the three. Each document sits at its own word mix and spreads a little probability around itself; where the hills overlap is the kind of text the collection makes likely. Move to try a new document, click to add it, double-click to reset.</figcaption>
+      <figcaption>Each corner is a word; every point inside is a mix of the three. Each document sits at its own mix and spreads a little probability around itself, so the hills show what text in the collection looks like. To search, weight each document by how likely it is to have produced the query, blend their mixes into a relevance model, and rank documents by how close they sit to it. Move to try a document, click to add it, double-click to reset.</figcaption>
       <a class="scroll-cue" href="#recently">Recently ↓</a>
     </figure>
   </header>
