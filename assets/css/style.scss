@@ -286,13 +286,16 @@ strong {
 #simplex {
   display: block;
   width: 100%;
-  aspect-ratio: 1 / 0.7;
+  aspect-ratio: 1 / 0.9;
+  max-width: var(--hero-w, 24.5rem);
+  margin: 0 auto;
   cursor: crosshair;
   touch-action: pan-y;
 }
 
 .hero-figure figcaption {
-  margin-top: 0.5rem;
+  max-width: 34rem;
+  margin: 0.4rem auto 0;
   color: var(--muted);
   font-size: 0.88rem;
   line-height: 1.5;
