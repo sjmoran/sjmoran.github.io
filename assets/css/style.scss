@@ -242,20 +242,24 @@ strong {
 .home-hero {
   display: flex;
   flex-direction: column;
-  min-height: calc(100vh - 3.5rem);
 }
 
 .hero-figure {
-  display: flex;
-  flex: 1;
-  flex-direction: column;
-  margin: 1.25rem 0 0;
+  margin: 1rem 0 0;
+}
+
+@media (min-width: 841px) {
+  /* Let the figure run past the text column to the right edge of the window. */
+  .hero-figure {
+    margin-right: calc((min(100vw - 4rem, 58rem) - 100vw) / 2 + 1.5rem);
+  }
 }
 
 .scroll-cue,
 .scroll-cue:visited {
-  align-self: center;
+  display: block;
   margin-top: 0.75rem;
+  text-align: center;
   color: var(--muted);
   font-size: 0.88rem;
   text-decoration: none;
@@ -268,9 +272,8 @@ strong {
 #simplex {
   display: block;
   width: 100%;
-  flex: 1;
-  min-height: 22rem;
-  max-height: 44rem;
+  aspect-ratio: 1 / 0.8;
+  max-height: 50rem;
   cursor: crosshair;
   touch-action: pan-y;
 }
@@ -890,8 +893,6 @@ strong {
   }
 
   #simplex {
-    flex: none;
-    min-height: 0;
     aspect-ratio: 1 / 0.95;
   }
 

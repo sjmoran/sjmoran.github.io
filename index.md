@@ -12,8 +12,8 @@ title: Sean Moran
     <figure class="hero-figure">
       <canvas id="simplex" aria-label="Interactive version of Lavrenko’s Dirichlet-kernel density on a three-word simplex. A new document follows the pointer; clicking adds it." role="img"></canvas>
       <figcaption>After Lavrenko’s <em>A Generative Theory of Relevance</em>, Figure 4.8: each training document induces a Dirichlet bump on the simplex A–B–C, and the bumps overlap into the generative density <em>p(du)</em>. Move to place a new document; click to add it; double-click to reset.</figcaption>
+      <a class="scroll-cue" href="#recently">Recently ↓</a>
     </figure>
-    <a class="scroll-cue" href="#recently">Recently ↓</a>
   </header>
 
   <section class="content-section" aria-labelledby="recently">
