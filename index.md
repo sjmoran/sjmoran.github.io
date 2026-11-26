@@ -50,19 +50,19 @@ title: Sean Moran
         <p>Moonshot's Kimi K3 is a 2.8-trillion-parameter open-weight model that ranks near the top of third-party leaderboards — yet the report shows most of the work isn't the architecture.</p>
       </li>
       <li class="card">
-        <a class="card-img" href="https://towardsdatascience.com/i-built-a-tiny-computer-inside-a-transformer/" target="_blank" rel="noopener" aria-hidden="true" tabindex="-1"><img src="/img/writing/tiny-computer-transformer.jpg" alt="" loading="lazy"></a>
-        <h3><a href="https://towardsdatascience.com/i-built-a-tiny-computer-inside-a-transformer/" target="_blank" rel="noopener">I Built a Tiny Computer Inside a Transformer</a></h3>
-        <p>The computational "circuits" that emerge inside transformer attention layers, with a hand-traced example of a model reasoning across several steps.</p>
+        <a class="card-img" href="https://medium.com/towards-artificial-intelligence/tokenops-ai-token-spend-is-infrastructure-not-impact-8fefadd99574" target="_blank" rel="noopener" aria-hidden="true" tabindex="-1"><img src="/img/writing/tokenops-delivery-stack.jpg" alt="" loading="lazy"></a>
+        <h3><a href="https://medium.com/towards-artificial-intelligence/tokenops-ai-token-spend-is-infrastructure-not-impact-8fefadd99574" target="_blank" rel="noopener">Measuring Agentic AI Spend Against Delivery</a></h3>
+        <p>Attributing AI spend to the work it supported, the way FinOps attributed cloud spend to business value.</p>
       </li>
       <li class="card">
-        <a class="card-img" href="https://medium.com/@sean.j.moran/the-retrieval-mistake-most-rag-teams-havent-understood-8b864c034ee7" target="_blank" rel="noopener" aria-hidden="true" tabindex="-1"><img src="/img/writing/retrieval-mistake.jpg" alt="" loading="lazy"></a>
-        <h3><a href="https://medium.com/@sean.j.moran/the-retrieval-mistake-most-rag-teams-havent-understood-8b864c034ee7" target="_blank" rel="noopener">Why Some RAG Queries Cannot Be Solved by Vector Search Alone</a></h3>
-        <p>Some production RAG queries have answers that dense similarity cannot reach at all.</p>
+        <a class="card-img" href="https://medium.com/data-science-collective/effective-claude-code-workflows-in-2026-what-changed-and-what-works-now-c93ebc6f8f50" target="_blank" rel="noopener" aria-hidden="true" tabindex="-1"><img src="/img/writing/claude-workflows-2026.jpg" alt="" loading="lazy"></a>
+        <h3><a href="https://medium.com/data-science-collective/effective-claude-code-workflows-in-2026-what-changed-and-what-works-now-c93ebc6f8f50" target="_blank" rel="noopener">Effective Claude Code Workflows in 2026: What Changed and What Works Now</a></h3>
+        <p>How to get the most out of Claude Code today, why the harness around the model matters more than the model alone, and what to drop from the 2025 playbook.</p>
       </li>
       <li class="card">
-        <a class="card-img" href="https://towardsdatascience.com/why-your-multi-agent-system-is-failing-escaping-the-17x-error-trap-of-the-bag-of-agents/" target="_blank" rel="noopener" aria-hidden="true" tabindex="-1"><img src="/img/writing/multi-agent-failing.jpg" alt="" loading="lazy"></a>
-        <h3><a href="https://towardsdatascience.com/why-your-multi-agent-system-is-failing-escaping-the-17x-error-trap-of-the-bag-of-agents/" target="_blank" rel="noopener">The 17× Error Trap in Bag-of-Agents Architectures</a></h3>
-        <p>Errors compound 17× in "bag-of-agents" architectures.</p>
+        <a class="card-img" href="https://medium.com/@sean.j.moran/ai-agents-need-more-than-job-orchestration-43e493bb4749" target="_blank" rel="noopener" aria-hidden="true" tabindex="-1"><img src="/img/writing/agent-orchestration.jpg" alt="" loading="lazy"></a>
+        <h3><a href="https://medium.com/@sean.j.moran/ai-agents-need-more-than-job-orchestration-43e493bb4749" target="_blank" rel="noopener">AI Agents Need More Than Job Orchestration</a></h3>
+        <p>Not all agents are jobs with a clear endpoint.</p>
       </li>
       <li class="card">
         <a class="card-img" href="https://medium.com/@sean.j.moran/llm-agents-are-still-in-the-age-of-phone-whistling-4fc2b4758477" target="_blank" rel="noopener" aria-hidden="true" tabindex="-1"><img src="/img/writing/phone-whistling.jpg" alt="" loading="lazy"></a>
@@ -70,9 +70,9 @@ title: Sean Moran
         <p>A false alarm in Claude Code, a 1960s phone whistle, and why the agent harness, not the model, has to keep instructions apart from untrusted content.</p>
       </li>
       <li class="card">
-        <a class="card-img" href="https://medium.com/@sean.j.moran/the-twelve-practical-patterns-i-wish-id-known-when-i-started-tinkering-with-forecasting-models-e88ae609ab27" target="_blank" rel="noopener" aria-hidden="true" tabindex="-1"><img src="/img/writing/twelve-patterns.jpg" alt="" loading="lazy"></a>
-        <h3><a href="https://medium.com/@sean.j.moran/the-twelve-practical-patterns-i-wish-id-known-when-i-started-tinkering-with-forecasting-models-e88ae609ab27" target="_blank" rel="noopener">Twelve Reliability Patterns From a Weekend Forecasting Project</a></h3>
-        <p>Practical lessons from time-series forecasting: split design, leakage, calibrated baselines, drift detection, and the recurring failure modes of naive models.</p>
+        <a class="card-img" href="https://medium.com/@sean.j.moran/before-chatgpt-the-2017-openai-emails-are-a-time-capsule-from-the-pre-transformer-agi-race-8f3a5d2a597c" target="_blank" rel="noopener" aria-hidden="true" tabindex="-1"><img src="/img/writing/before-chatgpt.jpg" alt="" loading="lazy"></a>
+        <h3><a href="https://medium.com/@sean.j.moran/before-chatgpt-the-2017-openai-emails-are-a-time-capsule-from-the-pre-transformer-agi-race-8f3a5d2a597c" target="_blank" rel="noopener">Before ChatGPT: The 2017 OpenAI Emails Are a Time Capsule from the Pre-Transformer AGI Race</a></h3>
+        <p>The released OpenAI emails, read as a record of how AGI strategy looked in the year before the transformer architecture reshaped the field.</p>
       </li>
     </ul>
     <p class="more-link"><a href="/writing/">All writing</a></p>

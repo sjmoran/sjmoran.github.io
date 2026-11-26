@@ -269,13 +269,6 @@ strong {
   margin: 1rem 0 0;
 }
 
-@media (min-width: 841px) {
-  /* Let the figure run past the text column to the right edge of the window. */
-  .hero-figure {
-    margin-right: calc((min(100vw - 4rem, 58rem) - 100vw) / 2 + 1.5rem);
-  }
-}
-
 .scroll-cue,
 .scroll-cue:visited {
   display: block;
@@ -294,7 +287,6 @@ strong {
   display: block;
   width: 100%;
   aspect-ratio: 1 / 0.8;
-  max-height: 50rem;
   cursor: crosshair;
   touch-action: pan-y;
 }
