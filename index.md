@@ -5,29 +5,54 @@ title: Sean Moran
 
 <article class="home-page">
   <header class="home-hero">
-    <h1>I build AI systems with clients and ship them to production.</h1>
-    <dl class="facts">
-      <div><dt>45+</dt><dd>people in the production-AI team I founded at J.P. Morgan</dd></div>
-      <div><dt>50k+</dt><dd>users of an AI assistant my team shipped inside the bank</dd></div>
-      <div><dt>20+</dt><dd>granted US patents</dd></div>
-      <div><dt>PhD</dt><dd>AI, University of Edinburgh</dd></div>
-    </dl>
+    <h1>Hi, I’m Sean.</h1>
+    <p class="lede">I build AI systems for a living. In my spare time I pick a question I can’t stop thinking about, build the smallest thing that answers it, and write up what I find.</p>
+    <p class="day-job">Day job: Head of AI (UK) at Vergence AI, the Palantir–TWG Global joint venture, where my team builds AI systems with clients and ships them to production. Before that: J.P. Morgan, Huawei Research, and a PhD at <a href="https://edinburghnlp.inf.ed.ac.uk/" target="_blank" rel="noopener">EdinburghNLP</a>. <a href="{{ site.cv_pdf }}">CV</a> · <a href="{{ site.linkedin_url }}" target="_blank" rel="noopener">LinkedIn</a></p>
   </header>
-  <div class="intro">
-    <p>I lead forward-deployed AI engineering in London. As Managing Director and Head of AI (UK) at Vergence AI, the Palantir–TWG Global joint venture, I hired and run a team that works on site with clients in insurance, financial services, healthcare and sport, taking LLM and ML systems from prototype to production.</p>
 
-    <p>Before that I spent five years at <a href="https://www.jpmorganchase.com/" target="_blank" rel="noopener">J.P. Morgan</a>, where I co-founded the CTO Applied Research group and founded a production-AI team that grew to 45+ people, shipping LLM and ML systems through model-risk, security and audit review. Earlier: senior research scientist at Huawei's London lab, first ML hire at a gene-therapy startup, and software engineer on Deutsche Bank's commodities desk. PhD from the <a href="https://www.ed.ac.uk/" target="_blank" rel="noopener">University of Edinburgh</a> (<a href="https://edinburghnlp.inf.ed.ac.uk/" target="_blank" rel="noopener">EdinburghNLP</a>); 40+ papers and 20+ granted US patents (<a href="{{ site.scholar_url }}" target="_blank" rel="noopener">Scholar</a>, <a href="https://patents.google.com/?inventor=Sean+Moran" target="_blank" rel="noopener">Patents</a>).</p>
-  </div>
-
-  <section class="content-section" aria-labelledby="deployed-work">
-    <h2 id="deployed-work">Deployed work</h2>
-    <ul class="work-list">
-      <li><span class="work-where">Vergence AI<br>2025–now</span><div><h3>Client portfolio</h3><p>Dozens of client projects at once, several in business production: fraud detection, pricing, customer analytics and document-heavy workflows. We build on Palantir Foundry/AIP with its Ontology, so the agents act on the client's operational records. Every engagement agrees evaluation gates and a human escalation path before production.</p></div></li>
-      <li><span class="work-where">Vergence AI</span><div><h3>Multi-agent document processing</h3><p>Designed the decomposition (extraction, tool contracts, human review, evaluation gates), shipped an MVP and a paid second phase, then handed the system to the client's own team.</p></div></li>
-      <li><span class="work-where">Vergence AI</span><div><h3>Pre-sales prototypes</h3><p>Ran discovery workshops and built working prototypes in front of prospective clients; these became paid engagements.</p></div></li>
-      <li><span class="work-where">J.P. Morgan<br>2020–2025</span><div><h3>Bank-wide LLM and ML systems</h3><p>Shipped systems used across the bank, including an assistant with 50k+ users, incident analysis and vulnerability triage. Set the release gates a model or agent had to pass: offline quality, usefulness judged by domain experts, latency, controls and post-launch outcomes.</p></div></li>
+  <section class="content-section" aria-labelledby="recently">
+    <h2 id="recently">Recently</h2>
+    <ul class="writing-list">
+      <li>
+        <a class="writing-thumb" href="https://towardsdatascience.com/timestral-t0-tabby-and-morpheus-20-compared-on-gift-eval/" target="_blank" rel="noopener" aria-hidden="true" tabindex="-1"><img src="/img/writing/tsfm-four-way.jpg" alt=""></a>
+        <div class="writing-meta">
+          <a href="https://towardsdatascience.com/timestral-t0-tabby-and-morpheus-20-compared-on-gift-eval/" target="_blank" rel="noopener">Timestral, t0, Tabby, and Morpheus-2.0 compared on GIFT-Eval</a>
+          <p class="writing-blurb">I re-ran three open time-series foundation models and reproduced their published scores. All four models scale, patch and predict quantiles; the real split is how series share information. <a href="https://github.com/sjmoran/tsfm-gifteval-rerun" target="_blank" rel="noopener">Code</a>.</p>
+        </div>
+      </li>
+      <li>
+        <a class="writing-thumb" href="https://medium.com/@sean.j.moran/finding-the-riemann-zeros-in-a-fourier-transform-of-the-primes-11a1cb7fae10" target="_blank" rel="noopener" aria-hidden="true" tabindex="-1"><img src="/img/writing/riemann-zeros-fft.jpg" alt=""></a>
+        <div class="writing-meta">
+          <a href="https://medium.com/@sean.j.moran/finding-the-riemann-zeros-in-a-fourier-transform-of-the-primes-11a1cb7fae10" target="_blank" rel="noopener">Finding the Riemann zeros in a Fourier transform of the primes</a>
+          <p class="writing-blurb">A Fourier transform of the prime counts up to a trillion recovers all 79 zeta zeros below 200.</p>
+        </div>
+      </li>
+      <li>
+        <a class="writing-thumb" href="https://medium.com/@sean.j.moran/looking-for-an-edge-in-the-uk-lotto-no-ball-bias-a-54p-loss-per-1-and-must-be-won-draws-05774c7f257b" target="_blank" rel="noopener" aria-hidden="true" tabindex="-1"><img src="/img/writing/uk-lotto-edge.jpg" alt=""></a>
+        <div class="writing-meta">
+          <a href="https://medium.com/@sean.j.moran/looking-for-an-edge-in-the-uk-lotto-no-ball-bias-a-54p-loss-per-1-and-must-be-won-draws-05774c7f257b" target="_blank" rel="noopener">Looking for an edge in the UK Lotto</a>
+          <p class="writing-blurb">Three ways a player might beat it, tested on 32 years of draws: the balls look fair, avoiding popular numbers is worth a third of a penny per pound, and about 3 in 10 Must Be Won draws since 2018 were worth slightly more than a ticket.</p>
+        </div>
+      </li>
+      <li>
+        <a class="writing-thumb" href="https://aiadvances.org/what-anthropics-workforce-data-says-about-ai-at-work-67103329c989" target="_blank" rel="noopener" aria-hidden="true" tabindex="-1"><img src="/img/writing/anthropic-employment.jpg" alt=""></a>
+        <div class="writing-meta">
+          <a href="https://aiadvances.org/what-anthropics-workforce-data-says-about-ai-at-work-67103329c989" target="_blank" rel="noopener">What Anthropic’s workforce data says about AI at work</a>
+          <p class="writing-blurb">Junior technical hires fell from 27% to 9% while the company tripled, and agents spend about 80% of interactive sessions waiting for a person.</p>
+        </div>
+      </li>
     </ul>
-    <p class="more-link">Client names withheld. <a href="{{ site.cv_pdf }}">CV (PDF)</a></p>
+    <p class="more-link"><a href="/writing/">All writing</a></p>
+  </section>
+
+  <section class="content-section" aria-labelledby="built">
+    <h2 id="built">Things I’ve built</h2>
+    <ul class="plain-list">
+      <li><a href="https://sjmoran.github.io/bitbudget/" target="_blank" rel="noopener"><strong>BitBudget</strong></a>: an open benchmark of retrieval quality per byte. One-bit codes with re-ranking match full precision at 32× compression. <a href="https://github.com/sjmoran/bitbudget" target="_blank" rel="noopener">Code</a>.</li>
+      <li><a href="https://huggingface.co/spaces/sjmoran/the-corpus-is-the-model" target="_blank" rel="noopener"><strong>The Corpus is the Model</strong></a>: a training-free image tagger whose every prediction traces back to examples in the corpus. Try it in the browser.</li>
+      <li><a href="https://github.com/sjmoran/claude-academic-prose" target="_blank" rel="noopener"><strong>claude-academic-prose</strong></a>: a Claude Code skill that strips hype from scientific writing and ties each claim to its evidence.</li>
+    </ul>
+    <p class="more-link"><a href="/talks/">More code, datasets and talks</a></p>
   </section>
 
   <section class="content-section" aria-labelledby="selected-research">
@@ -70,26 +95,5 @@ title: Sean Moran
     <p class="more-link"><a href="/publications/">All publications</a></p>
   </section>
 
-  <section class="content-section" aria-labelledby="systems-code">
-    <h2 id="systems-code">Systems and code</h2>
-    <ul class="plain-list">
-      <li><a href="https://sjmoran.github.io/bitbudget/" target="_blank" rel="noopener"><strong>BitBudget</strong></a> — a benchmark for measuring embedding retrieval quality per byte. <a href="https://github.com/sjmoran/bitbudget" target="_blank" rel="noopener">Code</a>.</li>
-      <li><a href="https://huggingface.co/spaces/sjmoran/the-corpus-is-the-model" target="_blank" rel="noopener"><strong>The Corpus is the Model</strong></a> — a training-free image tagger whose predictions can be traced to examples in the corpus.</li>
-      <li><a href="https://github.com/jpmorganchase/api-miner" target="_blank" rel="noopener"><strong>API-Miner</strong></a> — probabilistic retrieval of related API specifications.</li>
-      <li><a href="https://github.com/jpmorganchase/cv4code" target="_blank" rel="noopener"><strong>CV4Code</strong></a> — source-code understanding through spatial representations.</li>
-    </ul>
-    <p class="more-link"><a href="/talks/">Talks, code, and datasets</a></p>
-  </section>
 
-  <section class="content-section" aria-labelledby="recent-writing">
-    <h2 id="recent-writing">Recent writing</h2>
-    <ul class="plain-list">
-      <li><a href="https://aiadvances.org/what-anthropics-workforce-data-says-about-ai-at-work-67103329c989" target="_blank" rel="noopener">What Anthropic's Workforce Data Says About AI at Work</a></li>
-      <li><a href="https://medium.com/@sean.j.moran/ai-has-made-research-cheap-understanding-is-still-expensive-ae36da3f5205" target="_blank" rel="noopener">AI Has Made Research Cheap. Understanding Is Still Expensive.</a></li>
-      <li><a href="https://medium.com/@sean.j.moran/the-retrieval-mistake-most-rag-teams-havent-understood-8b864c034ee7" target="_blank" rel="noopener">Why Some RAG Queries Cannot Be Solved by Vector Search Alone</a></li>
-      <li><a href="https://medium.com/@sean.j.moran/ai-agents-need-more-than-job-orchestration-43e493bb4749" target="_blank" rel="noopener">AI Agents Need More Than Job Orchestration</a></li>
-      <li><a href="https://towardsdatascience.com/what-the-bits-over-random-metric-changed-in-how-i-think-about-rag-and-agents/" target="_blank" rel="noopener">What Bits-over-Random Changed in How I Think About RAG and Agents</a></li>
-    </ul>
-    <p class="more-link"><a href="/writing/">All writing</a></p>
-  </section>
 </article>
