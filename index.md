@@ -21,11 +21,11 @@ title: Sean Moran
 
   <section class="content-section" aria-labelledby="deployed-work">
     <h2 id="deployed-work">Deployed work</h2>
-    <ul class="plain-list">
-      <li><strong>Vergence AI, 2025–present.</strong> Dozens of client projects at once, several in business production: fraud detection, pricing, customer analytics and document-heavy workflows. We build on Palantir Foundry/AIP with its Ontology, so the agents act on the client's operational records. Every engagement agrees evaluation gates and a human escalation path before production.</li>
-      <li><strong>Multi-agent document processing.</strong> Designed the decomposition (extraction, tool contracts, human review, evaluation gates), shipped an MVP and a paid second phase, then handed the system to the client's own team.</li>
-      <li><strong>Pre-sales.</strong> Ran discovery workshops and built working prototypes in front of prospective clients; these became paid engagements.</li>
-      <li><strong>J.P. Morgan, 2020–2025.</strong> Shipped LLM and ML systems used across the bank, including an assistant with 50k+ users, incident analysis and vulnerability triage. Set the release gates a model or agent had to pass: offline quality, usefulness judged by domain experts, latency, controls and post-launch outcomes.</li>
+    <ul class="work-list">
+      <li><span class="work-where">Vergence AI<br>2025–now</span><div><h3>Client portfolio</h3><p>Dozens of client projects at once, several in business production: fraud detection, pricing, customer analytics and document-heavy workflows. We build on Palantir Foundry/AIP with its Ontology, so the agents act on the client's operational records. Every engagement agrees evaluation gates and a human escalation path before production.</p></div></li>
+      <li><span class="work-where">Vergence AI</span><div><h3>Multi-agent document processing</h3><p>Designed the decomposition (extraction, tool contracts, human review, evaluation gates), shipped an MVP and a paid second phase, then handed the system to the client's own team.</p></div></li>
+      <li><span class="work-where">Vergence AI</span><div><h3>Pre-sales prototypes</h3><p>Ran discovery workshops and built working prototypes in front of prospective clients; these became paid engagements.</p></div></li>
+      <li><span class="work-where">J.P. Morgan<br>2020–2025</span><div><h3>Bank-wide LLM and ML systems</h3><p>Shipped systems used across the bank, including an assistant with 50k+ users, incident analysis and vulnerability triage. Set the release gates a model or agent had to pass: offline quality, usefulness judged by domain experts, latency, controls and post-launch outcomes.</p></div></li>
     </ul>
     <p class="more-link">Client names withheld. <a href="{{ site.cv_pdf }}">CV (PDF)</a></p>
   </section>

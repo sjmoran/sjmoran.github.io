@@ -211,7 +211,7 @@ h1 {
 
 h2 {
   margin: 0 0 1.25rem;
-  font-size: 1.2rem;
+  font-size: 1.45rem;
   letter-spacing: -0.015em;
   line-height: 1.3;
 }
@@ -355,6 +355,43 @@ strong {
 .talks-list li:first-child,
 .evidence-list li:first-child {
   padding-top: 0;
+}
+
+.work-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.work-list li {
+  display: grid;
+  grid-template-columns: 7.5rem minmax(0, 1fr);
+  gap: 1.25rem;
+  padding: 1.1rem 0 1.2rem;
+  border-bottom: 1px solid var(--rule);
+}
+
+.work-list li:first-child {
+  padding-top: 0;
+}
+
+.work-where {
+  padding-top: 0.15rem;
+  color: var(--accent);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  line-height: 1.45;
+  text-transform: uppercase;
+}
+
+.work-list h3 {
+  margin-bottom: 0.3rem;
+}
+
+.work-list p {
+  margin: 0;
+  font-size: 0.95rem;
 }
 
 .more-link {
@@ -657,6 +694,11 @@ strong {
 @media (max-width: 480px) {
   .facts {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .work-list li {
+    grid-template-columns: 1fr;
+    gap: 0.3rem;
   }
 
   .site-shell {
