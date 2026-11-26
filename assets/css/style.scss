@@ -6,8 +6,8 @@
 :root {
   --paper: #ffffff;
   --ink: #222222;
-  --text: #555b5f;
-  --muted: #777d81;
+  --text: #3d4246;
+  --muted: #5c6266;
   --rule: #dedede;
   --soft: #f6f6f4;
   --accent: #1f6f6a;
@@ -25,7 +25,7 @@
 html {
   background: var(--paper);
   color-scheme: light;
-  font-size: 16px;
+  font-size: 17px;
   scroll-behavior: smooth;
 }
 
@@ -105,7 +105,7 @@ input:focus-visible {
   top: 3.5rem;
   align-self: start;
   color: var(--muted);
-  font-size: 0.875rem;
+  font-size: 0.95rem;
   line-height: 1.5;
 }
 
@@ -404,7 +404,7 @@ strong {
 .card h3 {
   margin-bottom: 0.35rem;
   font-family: var(--serif);
-  font-size: 1.15rem;
+  font-size: 1.25rem;
   font-weight: 600;
   line-height: 1.3;
 }
@@ -421,8 +421,8 @@ strong {
 
 .card p {
   margin: 0;
-  color: var(--muted);
-  font-size: 0.88rem;
+  color: var(--text);
+  font-size: 0.95rem;
   line-height: 1.55;
 }
 
@@ -675,8 +675,8 @@ strong {
 .writing-blurb,
 .talks-detail {
   margin: 0.28rem 0 0;
-  color: var(--muted);
-  font-size: 0.86rem;
+  color: var(--text);
+  font-size: 0.95rem;
   line-height: 1.55;
 }
 
