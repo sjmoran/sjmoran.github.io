@@ -7,7 +7,7 @@ title: Sean Moran
   <header class="home-hero">
     <div class="hero-text">
       <h1>Hi, I’m Sean.</h1>
-      <p class="lede">I build AI systems for a living. In my spare time I pick a question I can’t stop thinking about, build the smallest thing that answers it, and write up what I find.</p>
+      <p class="lede">I build AI systems for a living. Outside work I try new models and tools as they land, pick a question I can’t stop thinking about, build the smallest thing that answers it, and write up what I find. Lately those questions are mostly about AI safety: systems whose decisions we can explain, and that keep working when the data shifts.</p>
 </div>
     <figure class="hero-figure">
       <canvas id="simplex" aria-label="Interactive triangle: each corner is a word, documents are points, and overlapping hills show which word mixes are likely. A new document follows the pointer; clicking adds it." role="img"></canvas>

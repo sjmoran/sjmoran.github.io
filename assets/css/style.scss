@@ -266,7 +266,7 @@ strong {
 }
 
 .hero-figure {
-  margin: 1rem 0 0;
+  margin: 0.6rem 0 0;
 }
 
 .scroll-cue,
@@ -287,7 +287,7 @@ strong {
   display: block;
   width: 100%;
   aspect-ratio: 1 / 0.9;
-  max-width: var(--hero-w, 24rem);
+  max-width: var(--hero-w, 22.5rem);
   margin: 0 auto;
   cursor: crosshair;
   touch-action: pan-y;
@@ -339,9 +339,10 @@ strong {
 }
 
 .home-hero .lede {
-  max-width: 36rem;
+  max-width: 40rem;
+  margin-bottom: 0;
   color: var(--ink);
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   line-height: 1.55;
 }
 
