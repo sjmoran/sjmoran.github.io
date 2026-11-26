@@ -8,8 +8,6 @@ title: Sean Moran
   <div class="intro">
     <p>I lead forward-deployed AI engineering in London. As Managing Director and Head of AI (UK) at Vergence AI, the Palantir–TWG Global joint venture, I hired and run a team that works on site with clients in insurance, financial services, healthcare and sport, taking LLM and ML systems from prototype to production.</p>
 
-    <p>Coding agents write most of our code. The engineers own the specs, the evaluation sets that gate each release, and the relationship with the people who own the decision. I still write production code, including the extraction pipeline, the evaluation harness and shared agent tooling.</p>
-
     <p>Before that I spent five years at <a href="https://www.jpmorganchase.com/" target="_blank" rel="noopener">J.P. Morgan</a>, where I co-founded the CTO Applied Research group and founded a production-AI team that grew to 45+ people, shipping LLM and ML systems through model-risk, security and audit review. Earlier: senior research scientist at Huawei's London lab, first ML hire at a gene-therapy startup, and software engineer on Deutsche Bank's commodities desk. PhD from the <a href="https://www.ed.ac.uk/" target="_blank" rel="noopener">University of Edinburgh</a> (<a href="https://edinburghnlp.inf.ed.ac.uk/" target="_blank" rel="noopener">EdinburghNLP</a>); 40+ papers and 20+ granted US patents (<a href="{{ site.scholar_url }}" target="_blank" rel="noopener">Scholar</a>, <a href="https://patents.google.com/?inventor=Sean+Moran" target="_blank" rel="noopener">Patents</a>).</p>
   </div>
 
