@@ -11,15 +11,21 @@ title: Sean Moran
 </div>
     <figure class="hero-figure">
       <canvas id="simplex" aria-label="Interactive triangle: each corner is a word, documents are points, and overlapping hills show which word mixes are likely. A new document follows the pointer; clicking adds it." role="img"></canvas>
-      <figcaption>Each corner is a word; every point inside is a mix of the three. Each document sits at its own mix and spreads a little probability around itself, so the hills show what text in the collection looks like. To search, weight each document by how likely it is to have produced the query, blend their mixes into a relevance model, and rank documents by how close they sit to it. Move to try a document, click to add it, double-click to reset.</figcaption>
+      <figcaption>Each corner is a word; every point inside is a mix of the three. Each document sits at its own mix and spreads a little probability around itself, so the hills show what text in the collection looks like. To search, weight each document by how likely it is to have produced the query, blend their mixes into a relevance model, and rank documents by how close they sit to it. Move to try a document, click to add it, double-click to reset. Redrawn from the 2004 thesis of my PhD supervisor, Victor Lavrenko.</figcaption>
       <a class="scroll-cue" href="#recently">Recently ↓</a>
     </figure>
     <figure class="hero-figure" hidden>
       <canvas id="genmodel" tabindex="0" aria-label="Interactive graphical model: a hidden theta, one training image, generates three words and three picture regions. Left alone it draws samples; clicking a region, or pressing 1, 2 or 3, makes it guess the words for those regions instead." role="img"></canvas>
-      <figcaption>The model says a picture and its caption come from the same hidden θ: one training image. Left alone, it runs forwards, picking an image and drawing words and regions from it, with a little probability on everything else so odd samples turn up. Click a region to run it backwards: each training image is weighted by how likely it is to have produced the regions on the right, and their captions blend into the words on the left.</figcaption>
+      <figcaption>A picture and its caption share a hidden θ: one training image. Left alone, the model picks an image and draws words and regions from it. Click a region to run it backwards: images likely to have produced those regions get more weight, and their captions blend into the words on the left. Lavrenko, Manmatha and Jeon captioned photos this way in 2003; my first papers with Victor (<a href="/pdfs/bscrm_bmvc_paper.pdf">BMVC 2011</a>, <a href="/pdfs/acmicmr2014.pdf">ICMR 2014</a>) built on it.</figcaption>
       <a class="scroll-cue" href="#recently">Recently ↓</a>
     </figure>
-    <script>(function () { if (Math.random() < 0.5) { var f = document.querySelectorAll('.hero-figure'); f[0].hidden = true; f[1].hidden = false; } })();</script>
+    <figure class="hero-figure" hidden>
+      <canvas id="kde" tabindex="0" aria-label="Interactive plot: three region feature vectors from one training image, each with a Gaussian bump. Generated regions appear as dots, each one a training region plus random noise. Click or press Enter to draw one; the slider sets the bump width." role="img"></canvas>
+      <label class="hero-control" for="kde-sigma">Bump width σ <input id="kde-sigma" type="range" min="0.02" max="0.2" step="0.01" value="0.07"> <span id="kde-sigma-val">0.07</span></label>
+      <figcaption>One training image, tiger in grass, stores its regions as points in feature space with a Gaussian bump on each. A generated region is one of those points plus random noise, so the dots fill in the bumps. Click to draw one, double-click to clear. In my <a href="/pdfs/bscrm_bmvc_paper.pdf">BMVC 2011</a> paper with Victor Lavrenko, a peakier, heavier-tailed bump raised annotation F1 on Corel from 17% to 23%.</figcaption>
+      <a class="scroll-cue" href="#recently">Recently ↓</a>
+    </figure>
+    <script>(function () { var f = document.querySelectorAll('.hero-figure'), k = Math.floor(Math.random() * f.length); for (var i = 0; i < f.length; i++) f[i].hidden = i !== k; })();</script>
   </header>
 
   <section class="content-section" aria-labelledby="recently">
@@ -140,3 +146,4 @@ title: Sean Moran
 
 <script src="/assets/js/simplex.js?v={{ site.github.build_revision }}" defer></script>
 <script src="/assets/js/genmodel.js?v={{ site.github.build_revision }}" defer></script>
+<script src="/assets/js/kde.js?v={{ site.github.build_revision }}" defer></script>

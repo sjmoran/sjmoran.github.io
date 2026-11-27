@@ -302,6 +302,31 @@ strong {
   touch-action: pan-y;
 }
 
+#kde {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  max-width: calc(var(--hero-w, 22.5rem) * 1.2);
+  margin: 0 auto;
+  cursor: pointer;
+  touch-action: pan-y;
+}
+
+.hero-control {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--muted);
+  font-size: 0.85rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.hero-control input {
+  width: 8rem;
+  accent-color: var(--accent);
+}
+
 .hero-figure figcaption {
   max-width: 39rem;
   margin: 0.3rem auto 0;
