@@ -4,7 +4,7 @@
 // (or drifts when idle); clicking adds it to the training set.
 (function () {
   var canvas = document.getElementById('simplex');
-  if (!canvas || !canvas.getContext) return;
+  if (!canvas || !canvas.getContext || canvas.closest('[hidden]')) return;
   var ctx = canvas.getContext('2d');
   var reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
 

@@ -14,6 +14,12 @@ title: Sean Moran
       <figcaption>Each corner is a word; every point inside is a mix of the three. Each document sits at its own mix and spreads a little probability around itself, so the hills show what text in the collection looks like. To search, weight each document by how likely it is to have produced the query, blend their mixes into a relevance model, and rank documents by how close they sit to it. Move to try a document, click to add it, double-click to reset.</figcaption>
       <a class="scroll-cue" href="#recently">Recently ↓</a>
     </figure>
+    <figure class="hero-figure" hidden>
+      <canvas id="genmodel" tabindex="0" aria-label="Interactive graphical model: a hidden theta generates three words and three picture regions. Clicking a region, or pressing 1, 2 or 3, changes it, and the words update to the model's best caption." role="img"></canvas>
+      <figcaption>A hidden θ stands for one training image and generates both its words and its picture regions. Click a region on the right to change it. The model weights every training image by how likely it is to have produced those three regions and blends their words, so the left column is its best caption for a picture it has never seen.</figcaption>
+      <a class="scroll-cue" href="#recently">Recently ↓</a>
+    </figure>
+    <script>(function () { if (Math.random() < 0.5) { var f = document.querySelectorAll('.hero-figure'); f[0].hidden = true; f[1].hidden = false; } })();</script>
   </header>
 
   <section class="content-section" aria-labelledby="recently">
@@ -133,3 +139,4 @@ title: Sean Moran
 </article>
 
 <script src="/assets/js/simplex.js?v={{ site.github.build_revision }}" defer></script>
+<script src="/assets/js/genmodel.js?v={{ site.github.build_revision }}" defer></script>

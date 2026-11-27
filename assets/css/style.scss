@@ -293,6 +293,15 @@ strong {
   touch-action: pan-y;
 }
 
+#genmodel {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  max-width: calc(var(--hero-w, 22.5rem) * 1.2);
+  margin: 0 auto;
+  touch-action: pan-y;
+}
+
 .hero-figure figcaption {
   max-width: 39rem;
   margin: 0.3rem auto 0;
