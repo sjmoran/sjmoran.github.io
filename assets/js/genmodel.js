@@ -1,6 +1,7 @@
 // After Lavrenko's generative model for image annotation: a hidden theta (one training image)
 // generates both its words w and its region features g, which render as regions r.
-// Clicking a region panel changes it; the words on the left are
+// Idle, it runs forwards: pick a training image J, then sample words from P(w|J) and
+// regions from P(g|J). Clicking a region runs it backwards: the words on the left are
 //   P(w | r1 r2 r3) = sum_J P(w|J) P(J | r1 r2 r3),
 // a posterior-weighted blend of the training captions.
 (function () {
@@ -25,9 +26,10 @@
   var VW = 480, VH = 360, YS = [90, 180, 270], TX = 200, TY = 180;
   var WX = 104, GX = 290, RX = 360, PX = 404, PS = 58;
   var regions = ['sky', 'stripes', 'grass'];
-  var pw = {}, shown = {}, top3 = [];
+  var pw = {}, shown = {}, top3 = [], post = TRAIN.map(function () { return 1 / TRAIN.length; });
   var W, H, dpr, hover = -1, dirty = true;
-  var lastTouch = -1e9, lastAuto = 0;
+  var mode = reduce ? 'infer' : 'gen', gen = null, lastTouch = -1e9;
+  var HOLD = 4200, STEP = 300, FIRST = 500;  // ms: sample lifetime, stagger between rows, delay before first row
 
   function counts(list) {
     var c = {};
@@ -41,17 +43,35 @@
   }
   var bgG = background('g'), bgW = background('w');
 
+  function pWord(j, w) { var t = TRAIN[j]; return LW * (counts(t.w)[w] || 0) / t.w.length + (1 - LW) * bgW[w]; }
+  function pRegion(j, g) { var t = TRAIN[j]; return LG * (counts(t.g)[g] || 0) / t.g.length + (1 - LG) * bgG[g]; }
+  function sample(items, p) {
+    var u = Math.random(), i;
+    for (i = 0; i < items.length - 1; i++) { u -= p(items[i]); if (u < 0) break; }
+    return items[i];
+  }
+  // Forward pass: theta is a training image picked uniformly; words and regions are drawn from it.
+  function generate(now) {
+    var j = Math.floor(Math.random() * TRAIN.length), words = Object.keys(bgW), out = { j: j, t0: now, w: [], g: [] };
+    for (var i = 0; i < 3; i++) {
+      out.w.push(sample(words, function (w) { return pWord(j, w); }));
+      out.g.push(sample(KINDS, function (g) { return pRegion(j, g); }));
+    }
+    gen = out;
+  }
+  function revealed(i, now) { return now - gen.t0 >= FIRST + STEP * i; }
+
   function infer() {
     var logp = TRAIN.map(function (t) {
       var c = counts(t.g);
       return regions.reduce(function (a, g) { return a + Math.log(LG * (c[g] || 0) / t.g.length + (1 - LG) * bgG[g]); }, 0);
     });
     var m = Math.max.apply(null, logp), z = 0;
-    var post = logp.map(function (l) { var e = Math.exp(l - m); z += e; return e; });
+    post = logp.map(function (l) { var e = Math.exp(l - m); z += e; return e; });
+    post = post.map(function (x) { return x / z; });
     for (var w in bgW) pw[w] = 0;
     TRAIN.forEach(function (t, j) {
-      var c = counts(t.w);
-      for (var w in pw) pw[w] += post[j] / z * (LW * (c[w] || 0) / t.w.length + (1 - LW) * bgW[w]);
+      for (var w in pw) pw[w] += post[j] * pWord(j, w);
     });
     top3 = Object.keys(pw).sort(function (a, b) { return pw[b] - pw[a]; }).slice(0, 3);
     for (w in pw) if (!(w in shown) || reduce) shown[w] = pw[w];
@@ -134,64 +154,84 @@
     ctx.restore();
   }
 
-  function draw() {
+  function thumbs(now) {
+    var n = TRAIN.length, sq = 11, tw = 3 * sq, gap = 6, x0 = TX - (n * tw + (n - 1) * gap) / 2, y = 302;
+    var top = Math.max.apply(null, post);
+    TRAIN.forEach(function (t, j) {
+      var x = x0 + j * (tw + gap), on = mode === 'gen' ? j === gen.j : true;
+      ctx.globalAlpha = mode === 'gen' ? (on ? 1 : 0.25) : 0.2 + 0.8 * post[j] / top;
+      t.g.forEach(function (g, k) { region(g, x + k * sq, y, sq); });
+      ctx.globalAlpha = 1;
+      if (mode === 'gen' && on) { ctx.lineWidth = 2; ctx.strokeStyle = '#1f6f6a'; ctx.strokeRect(x - 2, y - 2, tw + 4, sq + 4); }
+      if (mode === 'infer') { ctx.fillStyle = '#1f6f6a'; ctx.fillRect(x, y + sq + 3, tw * post[j] / top, 2.5); }
+    });
+    small(mode === 'gen' ? 'θ = training image ' + (gen.j + 1) + ', picked at random' : 'p(θ | r₁ r₂ r₃): which training image made these regions?', TX, 340, 'center');
+  }
+
+  function draw(now) {
     if (!dirty) return;
     dirty = false;
-    var k = W / VW;
+    now = now || performance.now();
+    var k = W / VW, g = mode === 'gen';
     ctx.setTransform(dpr * k, 0, 0, dpr * k, 0, 0);
     ctx.clearRect(0, 0, VW, VH);
 
-    top3.forEach(function (w, i) {
-      arrow(TX, TY, 22, WX, YS[i], 17, 0.8 + 14 * shown[w], 'rgba(31, 111, 106, 0.85)');
-    });
     YS.forEach(function (y, i) {
-      arrow(TX, TY, 22, GX, y, 17, 1.2, '#222');
-      arrow(GX, y, 17, RX, y, 17, 1.2, '#222');
+      var on = g && revealed(i, now), teal = 'rgba(31, 111, 106, 0.85)';
+      var wl = g ? (on ? 2.2 : 1) : 0.8 + 14 * shown[top3[i]];
+      arrow(TX, TY, 22, WX, y, 17, wl, g && !on ? '#bbb' : teal);
+      arrow(TX, TY, 22, GX, y, 17, on ? 2.2 : 1.2, on ? teal : '#222');
+      arrow(GX, y, 17, RX, y, 17, on ? 2.2 : 1.2, on ? teal : '#222');
       arrow(PX, y, 0, RX, y, 17, 0.8, '#5c6266');
     });
 
     node(TX, TY, 22, 'θ');
     YS.forEach(function (y, i) {
+      var on = !g || revealed(i, now);
       node(WX, y, 17, 'w', String(i + 1));
       node(GX, y, 17, 'g', String(i + 1));
       node(RX, y, 17, 'r', String(i + 1));
-      region(regions[i], PX, y - PS / 2, PS);
+      if (on) region(g ? gen.g[i] : regions[i], PX, y - PS / 2, PS);
+      else { ctx.fillStyle = '#f2f2ef'; ctx.fillRect(PX, y - PS / 2, PS, PS); }
       ctx.lineWidth = hover === i ? 2.4 : 1;
       ctx.strokeStyle = hover === i ? '#1f6f6a' : '#222';
       ctx.strokeRect(PX, y - PS / 2, PS, PS);
-    });
-
-    top3.forEach(function (w, i) {
+      if (!on) return;
+      var w = g ? gen.w[i] : top3[i], p = g ? pWord(gen.j, w) : shown[w];
       ctx.textAlign = 'right'; ctx.textBaseline = 'alphabetic';
       ctx.fillStyle = '#222'; ctx.font = '17px "Noto Sans", "Helvetica Neue", sans-serif';
-      ctx.fillText(w, WX - 26, YS[i] + 2);
+      ctx.fillText(w, WX - 26, y + 2);
       ctx.fillStyle = '#5c6266'; ctx.font = '12px "Noto Sans", "Helvetica Neue", sans-serif';
-      ctx.fillText(shown[w].toFixed(2).replace(/^0/, ''), WX - 26, YS[i] + 18);
+      ctx.fillText(p.toFixed(2).replace(/^0/, ''), WX - 26, y + 18);
     });
 
     small('P(w|θ)', 150, 118, 'left');
     small('P(g|θ)', 254, 152, 'left');
     small('P(r|g)', (GX + RX) / 2, 64, 'center');
-    small('θ ~ p(θ | r₁ r₂ r₃)', TX, 305, 'center');
+    small(g ? 'generating' : 'reading backwards', TX, 30, 'center');
+    thumbs(now);
   }
 
-  function cycle(i) {
+  // A click switches to inference, starting from whatever regions are on screen.
+  function touch(i) {
+    if (mode === 'gen') { regions = gen.g.slice(); mode = 'infer'; }
+    lastTouch = performance.now();
     regions[i] = KINDS[(KINDS.indexOf(regions[i]) + 1) % KINDS.length];
     infer(); draw();
   }
 
   function tick(now) {
-    if (now - lastTouch > 6000 && now - lastAuto > 2600) {
-      lastAuto = now;
-      var i = Math.floor(Math.random() * 3), next;
-      do { next = KINDS[Math.floor(Math.random() * KINDS.length)]; } while (next === regions[i]);
-      regions[i] = next; infer();
+    if (mode === 'infer' && now - lastTouch > 8000) { mode = 'gen'; gen = null; }
+    if (mode === 'gen') {
+      if (!gen || now - gen.t0 > HOLD) generate(now);
+      dirty = true;
+    } else {
+      for (var w in pw) {
+        var d = pw[w] - shown[w];
+        if (Math.abs(d) > 1e-4) { shown[w] += d * 0.12; dirty = true; }
+      }
     }
-    for (var w in pw) {
-      var d = pw[w] - shown[w];
-      if (Math.abs(d) > 1e-4) { shown[w] += d * 0.12; dirty = true; }
-    }
-    draw();
+    draw(now);
     if (running) raf = requestAnimationFrame(tick);
   }
 
@@ -209,19 +249,16 @@
   canvas.addEventListener('pointerleave', function () { hover = -1; dirty = true; draw(); });
   canvas.addEventListener('click', function (e) {
     var i = panelAt(e);
-    if (i < 0) return;
-    lastTouch = performance.now();
-    cycle(i);
+    if (i >= 0) touch(i);
   });
   canvas.addEventListener('keydown', function (e) {
     var i = ['1', '2', '3'].indexOf(e.key);
-    if (i < 0) return;
-    lastTouch = performance.now();
-    cycle(i);
+    if (i >= 0) touch(i);
   });
   window.addEventListener('resize', function () { size(); draw(); });
 
   infer();
+  if (mode === 'gen') generate(-1e9);
   size();
   draw();
 

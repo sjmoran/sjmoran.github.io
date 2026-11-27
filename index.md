@@ -15,8 +15,8 @@ title: Sean Moran
       <a class="scroll-cue" href="#recently">Recently ↓</a>
     </figure>
     <figure class="hero-figure" hidden>
-      <canvas id="genmodel" tabindex="0" aria-label="Interactive graphical model: a hidden theta generates three words and three picture regions. Clicking a region, or pressing 1, 2 or 3, changes it, and the words update to the model's best caption." role="img"></canvas>
-      <figcaption>A hidden θ stands for one training image and generates both its words and its picture regions. Click a region on the right to change it. The model weights every training image by how likely it is to have produced those three regions and blends their words, so the left column is its best caption for a picture it has never seen.</figcaption>
+      <canvas id="genmodel" tabindex="0" aria-label="Interactive graphical model: a hidden theta, one training image, generates three words and three picture regions. Left alone it draws samples; clicking a region, or pressing 1, 2 or 3, makes it guess the words for those regions instead." role="img"></canvas>
+      <figcaption>The model says a picture and its caption come from the same hidden θ: one training image. Left alone, it runs forwards, picking an image and drawing words and regions from it, with a little probability on everything else so odd samples turn up. Click a region to run it backwards: each training image is weighted by how likely it is to have produced the regions on the right, and their captions blend into the words on the left.</figcaption>
       <a class="scroll-cue" href="#recently">Recently ↓</a>
     </figure>
     <script>(function () { if (Math.random() < 0.5) { var f = document.querySelectorAll('.hero-figure'); f[0].hidden = true; f[1].hidden = false; } })();</script>
